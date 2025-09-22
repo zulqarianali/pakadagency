@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Ad Agency - Your Digital Partner</title>
+    <meta name="description" content="Pak Ad Agency offers top-notch digital marketing, video production, and web design services to bring your business online.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom Styles & Fonts -->
+    <style>
+        /* Custom Font: Jameel Noori Nastaleeq for Urdu text */
+        @font-face {
+            font-family: 'Jameel Noori Nastaleeq';
+            src: url('https://font.urduweb.org/downloads/Jameel_Noori_Nastaleeq.ttf') format('truetype');
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .urdu-text {
+            font-family: 'Jameel Noori Nastaleeq', sans-serif;
+        }
+
+        /* Custom colors for the theme */
+        .bg-primary-gradient {
+            background-image: linear-gradient(to right, #00A79D, #00529B); /* Green to Blue */
+        }
+
+        .text-primary-green {
+            color: #00A79D;
+        }
+
+        .text-primary-blue {
+            color: #00529B;
+        }
+
+        .bg-dark {
+            background-color: #1a202c; /* A dark color for footer */
+        }
+
+        /* Responsive Iframe Container */
+        .aspect-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .aspect-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header id="home" class="bg-primary-gradient text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">
+                Pak Ad Agency
+                <!-- <span class="urdu-text text-3xl">پاک ایڈ ایجنسی</span> -->
+            </a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#home" class="hover:text-gray-300">Home</a>
+                <a href="#portfolio" class="hover:text-gray-300">Portfolio</a>
+                <a href="#services" class="hover:text-gray-300">Services</a>
+                <a href="#contact" class="hover:text-gray-300">Contact</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="burger-btn" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary-gradient">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="#home" class="hover:text-gray-300">Home</a>
+                <a href="#portfolio" class="hover:text-gray-300">Portfolio</a>
+                <a href="#services" class="hover:text-gray-300">Services</a>
+                <a href="#contact" class="hover:text-gray-300">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-cover bg-center text-white" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop'); height: 90vh;">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">The Best Solution to Bring Your Business Online</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl">We offer a complete range of digital services to help your brand succeed online.</p>
+                <a href="https://wa.me/923001234567" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fab fa-whatsapp mr-2"></i>Contact on WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <!-- Portfolio/Videos Section -->
+        <section id="portfolio" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Portfolio</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <div class="aspect-video">
+                            <iframe src="https://www.youtube.com/embed/i-b4-g_D3_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Digital Marketing Overview</h3>
+                            <p class="text-gray-600">An introduction to the world of digital marketing.</p>
+                        </div>
+                    </div>
+                    <!-- Video 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <div class="aspect-video">
+                            <iframe src="https://www.youtube.com/embed/Z_Ksp_4_p-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Social Media Strategy</h3>
+                            <p class="text-gray-600">A deep dive into creating effective social media campaigns.</p>
+                        </div>
+                    </div>
+                    <!-- Video 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                        <div class="aspect-video">
+                            <iframe src="https://www.youtube.com/embed/9zB4_ifY8f8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Web Design Principles</h3>
+                            <p class="text-gray-600">Exploring the fundamentals of modern web design.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <!-- Service 1: Social Media Advertising -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <div class="text-4xl text-primary-green mb-4">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Social Media Advertising</h3>
+                        <p class="text-gray-600">Targeted ad campaigns on platforms like Facebook, Instagram, and LinkedIn to reach your ideal customers.</p>
+                    </div>
+                    <!-- Service 2: Video Production -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <div class="text-4xl text-primary-blue mb-4">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Video Production</h3>
+                        <p class="text-gray-600">High-quality promotional videos, tutorials, and corporate films that engage and convert.</p>
+                    </div>
+                    <!-- Service 3: Web Design -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <div class="text-4xl text-primary-green mb-4">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Web Design</h3>
+                        <p class="text-gray-600">Modern, responsive, and user-friendly websites that look great on all devices.</p>
+                    </div>
+                    <!-- Service 4: Digital Marketing -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+                        <div class="text-4xl text-primary-blue mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Digital Marketing</h3>
+                        <p class="text-gray-600">A complete suite of digital marketing services including SEO, SEM, and content strategy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+                <div class="relative max-w-3xl mx-auto">
+                    <!-- Testimonial Slides -->
+                    <div id="testimonial-slider" class="relative">
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide text-center p-8 bg-white rounded-lg shadow-lg">
+                            <p class="text-lg italic text-gray-700 mb-4">"Pak Ad Agency transformed our online presence. Their team is professional, creative, and delivered results beyond our expectations."</p>
+                            <div class="text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="font-bold text-lg">Ahmed Khan</p>
+                            <p class="text-gray-500">CEO, Tech Solutions</p>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide hidden text-center p-8 bg-white rounded-lg shadow-lg">
+                            <p class="text-lg italic text-gray-700 mb-4">"The video production quality was outstanding. They captured our brand's essence perfectly. Highly recommended!"</p>
+                            <div class="text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="font-bold text-lg">Fatima Ali</p>
+                            <p class="text-gray-500">Marketing Director, Creative Co.</p>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide hidden text-center p-8 bg-white rounded-lg shadow-lg">
+                            <p class="text-lg italic text-gray-700 mb-4">"Working with them on our website was a breeze. They are responsive, attentive to detail, and truly skilled at what they do."</p>
+                            <div class="text-yellow-400 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="font-bold text-lg">Zainab Hassan</p>
+                            <p class="text-gray-500">Founder, E-commerce Store</p>
+                        </div>
+                    </div>
+                    <!-- Slider Navigation -->
+                    <button id="prev-btn" class="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-200">
+                        <i class="fas fa-chevron-left text-gray-600"></i>
+                    </button>
+                    <button id="next-btn" class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-200">
+                        <i class="fas fa-chevron-right text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-primary-gradient text-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get in Touch</h2>
+                <div class="flex flex-col md:flex-row md:space-x-12">
+                    <!-- Contact Form -->
+                    <div class="md:w-2/3 mb-12 md:mb-0">
+                        <form action="https://formspree.io/f/your_form_id" method="POST" class="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-bold mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-bold mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-bold mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary-blue hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Contact Details -->
+                    <div class="md:w-1/3 text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <p class="mb-4">
+                            Feel free to reach out to us through any of the following methods. We are always here to help you!
+                        </p>
+                        <div class="flex items-center justify-center md:justify-start mb-4">
+                            <i class="fab fa-whatsapp text-3xl mr-4"></i>
+                            <a href="https://wa.me/923001234567" target="_blank" class="hover:underline text-lg">+92 300 1234567</a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start">
+                            <i class="fas fa-phone text-2xl mr-4"></i>
+                            <a href="tel:+923001234567" class="hover:underline text-lg">+92 300 1234567</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Fixed WhatsApp Button -->
+        <a href="https://wa.me/923001234567" target="_blank" class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50 transition-transform transform hover:scale-110">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </a>
+
+    <script>
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        burgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when a link is clicked
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Testimonial Slider
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.classList.add('hidden');
+                if (index === n) {
+                    slide.classList.remove('hidden');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        if (slides.length > 0) {
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // Initialize slider
+            showSlide(currentSlide);
+        }
+    </script>
+</body>
+</html>
