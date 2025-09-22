@@ -1,473 +1,437 @@
-<!DOCTYPE html>
+
+<!DOCTYPE>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Ad Agency - Your Digital Partner</title>
-    <meta name="description" content="Pak Ad Agency offers top-notch digital marketing, video production, and web design services to bring your business online.">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Inter -->
+    <title>Pak Ad Agency</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom Styles & Fonts -->
     <style>
-        /* Custom Font: Jameel Noori Nastaleeq for Urdu text */
+        /* Custom font for Urdu text */
         @font-face {
             font-family: 'Jameel Noori Nastaleeq';
-            src: url('https://font.urduweb.org/downloads/Jameel_Noori_Nastaleeq.ttf') format('truetype');
+            src: url('https://fonts.gstatic.com/s/notonastaliqurdu/v1/s-A3pW3ZfB-4o5s2d5p1l.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .urdu-text {
+        .urdu-font {
             font-family: 'Jameel Noori Nastaleeq', sans-serif;
         }
-
-        /* Custom colors for the theme */
-        .bg-primary-gradient {
-            background-image: linear-gradient(to right, #00A79D, #00529B); /* Green to Blue */
+        /* Custom CSS for carousel fade animation */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
-
-        .text-primary-green {
-            color: #00A79D;
+        .fade-in.active {
+            opacity: 1;
         }
-
-        .text-primary-blue {
-            color: #00529B;
-        }
-
-        .bg-dark {
-            background-color: #1a202c; /* A dark color for footer */
-        }
-
-        /* Responsive Iframe Container */
-        .aspect-video {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-
-        .aspect-video iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
     </style>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#28a745',
+                        'secondary-blue': '#007bff',
+                        'dark-gray': '#343a40',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ90z6y6f0uF2v2eE6U/nQxP4rI/5+0eF+5j2Ua0p9s1/0g1X+b2h/x+w/g+" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="bg-white text-gray-800">
+<body class="font-inter bg-gray-50 text-dark-gray">
 
-    <!-- Header -->
-    <header id="home" class="bg-primary-gradient text-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">
-                Pak Ad Agency
-                <!-- <span class="urdu-text text-3xl">پاک ایڈ ایجنسی</span> -->
-            </a>
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="#home" class="hover:text-gray-300">Home</a>
-                <a href="#portfolio" class="hover:text-gray-300">Portfolio</a>
-                <a href="#services" class="hover:text-gray-300">Services</a>
-                <a href="#contact" class="hover:text-gray-300">Contact</a>
-            </nav>
-            <div class="md:hidden">
-                <button id="burger-btn" class="text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+    <!-- Header Section -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-primary-green to-secondary-blue shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center text-white">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="text-3xl font-bold rounded-lg p-2">Pak Ad Agency</a>
+                
+              <!-- Optional Urdu Logo -->
+                <a href="#" class="text-2xl urdu-font ml-4 rounded-lg p-2 hidden md:block text-white">پاک ایڈ ایجنسی</a>
+
             </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-primary-gradient">
-            <nav class="flex flex-col items-center space-y-4 py-4">
-                <a href="#home" class="hover:text-gray-300">Home</a>
-                <a href="#portfolio" class="hover:text-gray-300">Portfolio</a>
-                <a href="#services" class="hover:text-gray-300">Services</a>
-                <a href="#contact" class="hover:text-gray-300">Contact</a>
-            </nav>
-        </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex space-x-8 text-lg font-medium items-center">
+                <li><a href="#home" class="hover:text-gray-200 transition-colors duration-300">Home</a></li>
+                <li><a href="#portfolio" class="hover:text-gray-200 transition-colors duration-300">Portfolio</a></li>
+                <li><a href="#services" class="hover:text-gray-200 transition-colors duration-300">Services</a></li>
+                <li><a href="#contact" class="hover:text-gray-200 transition-colors duration-300">Contact</a></li>
+                <!-- Search Icon for Desktop -->
+                <li><a href="#" class="hover:text-gray-200 transition-colors duration-300 ml-4"><i class="fas fa-search"></i></a></li>
+            </ul>
+
+            <!-- Mobile Burger Menu Button -->
+            <button id="burger-btn" class="md:hidden text-2xl p-2 rounded-lg hover:bg-white/20 transition-colors duration-300">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
     </header>
 
-    <main>
-        <!-- Hero Section Carousel -->
-        <section id="hero-carousel" class="relative w-full" style="height: 70vh;">
-            <!-- Carousel Slides -->
-            <div class="relative h-full">
-                <!-- Slide 1 -->
-                <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-100 z-10">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop');"></div>
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
-                    <div class="relative z-20 flex items-center justify-center h-full">
-                        <h2 class="text-4xl md:text-6xl font-bold text-white">Video Editing</h2>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0 z-0">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop');"></div>
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
-                    <div class="relative z-20 flex items-center justify-center h-full">
-                        <h2 class="text-4xl md:text-6xl font-bold text-white">AI Video Ads</h2>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-slide absolute w-full h-full transition-opacity duration-1000 ease-in-out opacity-0 z-0">
-                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop');"></div>
-                    <div class="absolute inset-0 bg-black opacity-50"></div>
-                    <div class="relative z-20 flex items-center justify-center h-full">
-                        <h2 class="text-4xl md:text-6xl font-bold text-white">Short Video Ads</h2>
-                    </div>
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-dark-gray/90 text-white z-40 hidden flex-col items-center justify-center space-y-8 text-2xl">
+        <button id="close-btn" class="absolute top-6 right-6 text-4xl p-2 rounded-lg hover:bg-white/20 transition-colors duration-300">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="hover:text-primary-green" onclick="hideMobileMenu()">Home</a>
+        <a href="#portfolio" class="hover:text-primary-green" onclick="hideMobileMenu()">Portfolio</a>
+        <a href="#services" class="hover:text-primary-green" onclick="hideMobileMenu()">Services</a>
+        <a href="#contact" class="hover:text-primary-green" onclick="hideMobileMenu()">Contact</a>
+        <!-- Search Icon for Mobile -->
+        <a href="#" class="hover:text-primary-green" onclick="hideMobileMenu()"><i class="fas fa-search mr-2"></i>Search</a>
+    </div>
+
+    <!-- Hero Section with Image Carousel -->
+    <section id="home" class="relative w-full overflow-hidden pt-20">
+        <!-- Carousel Container -->
+        <div id="image-carousel" class="relative w-full h-[50vh] md:h-[70vh]">
+            <!-- Carousel Images with overlay text -->
+            <div class="carousel-item absolute inset-0 w-full h-full fade-in active">
+                <img src="https://www.sciencebuddies.org/WdTLQtJ3Y_eXfwAqRO5_5KT46aI=/640x480/-/https/careerdiscovery.sciencebuddies.org/cdn/Files/18382/4/film-editor.jpg" alt="Video Editing" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <p class="text-white text-4xl md:text-6xl font-bold opacity-0 transition-opacity duration-1000">Video Editing</p>
                 </div>
             </div>
-
-            <!-- Carousel Dots -->
-            <div id="carousel-dots" class="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
-                <button class="carousel-dot h-3 w-3 rounded-full bg-white opacity-50 transition"></button>
-                <button class="carousel-dot h-3 w-3 rounded-full bg-white opacity-50 transition"></button>
-                <button class="carousel-dot h-3 w-3 rounded-full bg-white opacity-50 transition"></button>
+            <div class="carousel-item absolute inset-0 w-full h-full fade-in">
+                <img src="https://fiverr-res.cloudinary.com/videos/so_26.139619,t_main1,q_auto,f_auto/dvenewgdtdd97tg5euyi/create-ai-video-ads-ai-commercial-video-for-tiktok.png" alt="AI Video Ads" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <p class="text-white text-4xl md:text-6xl font-bold opacity-0 transition-opacity duration-1000">AI Video Ads</p>
+                </div>
             </div>
-        </section>
+            <div class="carousel-item absolute inset-0 w-full h-full fade-in">
+                <img src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/309632533/original/b552b23290697289689f16939a83fc01374dea05/create-stunning-short-promotional-video-ads-for-facebook-youtube-instagram.jpg" alt="Short Video Ads" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <p class="text-white text-4xl md:text-6xl font-bold opacity-0 transition-opacity duration-1000">Short Video Ads</p>
+                </div>
+            </div>
+            
+            <!-- Carousel Controls -->
+            <button id="prev-btn" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-3xl p-4 bg-black/30 rounded-full hover:bg-black/50 transition-colors duration-300 z-10">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="next-btn" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-3xl p-4 bg-black/30 rounded-full hover:bg-black/50 transition-colors duration-300 z-10">
+                <i class="fas fa-chevron-right"></i>
+            </button>
 
-        <!-- Post-Carousel Hero Content -->
-        <section class="text-center py-16 px-6 bg-white">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-4">The Best Solution to Bring Your Business Online</h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">We offer a complete range of digital services to help your brand succeed online.</p>
-            <a href="https://wa.me/923247107543" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105 inline-block">
-                <i class="fab fa-whatsapp mr-2"></i>Contact on WhatsApp
+            <!-- Dot Indicators -->
+            <div id="dot-indicators" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+                <button class="dot-btn w-3 h-3 bg-white rounded-full opacity-50 active-dot"></button>
+                <button class="dot-btn w-3 h-3 bg-white rounded-full opacity-50"></button>
+                <button class="dot-btn w-3 h-3 bg-white rounded-full opacity-50"></button>
+            </div>
+        </div>
+
+        <!-- Main Content Below Carousel -->
+        <div class="relative z-20 text-center py-12 px-6 bg-white">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-4 text-dark-gray">The Best Solution to Bring Your Business Online</h1>
+            <p class="text-xl sm:text-2xl lg:text-3xl font-light text-gray-700 mb-8">We help you grow your brand and reach new customers with powerful digital marketing.</p>
+            <a href="https://wa.me/923247107543" target="_blank" class="inline-block py-4 px-10 text-2xl font-bold text-white bg-primary-green hover:bg-primary-green/90 rounded-full shadow-2xl transition-all duration-300">
+                Contact on WhatsApp
             </a>
-        </section>
+        </div>
+    </section>
+    
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/923247107543" target="_blank" class="fixed bottom-6 right-6 z-50 p-4 bg-primary-green text-white rounded-full shadow-2xl hover:scale-110 transition-transform duration-300">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
 
-        <!-- Portfolio/Videos Section -->
-        <section id="portfolio" class="py-20 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Portfolio</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Video 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="aspect-video">
-                            <iframe src="https://www.youtube.com/embed/i-b4-g_D3_w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Digital Marketing Overview</h3>
-                            <p class="text-gray-600">An introduction to the world of digital marketing.</p>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-green">Our Recent Work</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Item 1 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/RUq6zS7h3ro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 2 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/f79UvFh34to" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 3 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/KLTQcmYMzok" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 4 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/sjjxAIbSzq4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 5 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/dg5U0M8kMRU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 6 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/-Bpwog89K7E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 7 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/RNWrDX5q9DY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 8 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/iWwR540lmn0 " frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 9 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/-Bpwog89K7E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <!-- Video Item 10 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/d4eC3jnItYU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+               <!-- Video Item 11 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/5TFMmNSGP-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+               <!-- Video Item 12 -->
+                <div class="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <iframe class="w-full aspect-[9/16]" src="https://www.youtube.com/embed/5DMJMVhzbpQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+          
+          
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-secondary-blue">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Block 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-secondary-blue text-white rounded-full flex items-center justify-center text-3xl">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Social Media Advertising</h3>
+                    <p class="text-gray-600">Grow your brand's presence and engage with your audience on all major social platforms.</p>
+                </div>
+                <!-- Service Block 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-secondary-blue text-white rounded-full flex items-center justify-center text-3xl">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Video Production</h3>
+                    <p class="text-gray-600">From concept to final edit, we create compelling video content that tells your story.</p>
+                </div>
+                <!-- Service Block 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-secondary-blue text-white rounded-full flex items-center justify-center text-3xl">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Web Design</h3>
+                    <p class="text-gray-600">We design and build beautiful, fast, and responsive websites that convert visitors into customers.</p>
+                </div>
+                <!-- Service Block 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-secondary-blue text-white rounded-full flex items-center justify-center text-3xl">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Digital Marketing</h3>
+                    <p class="text-gray-600">Our comprehensive digital strategies help you dominate your market and achieve your business goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-6 bg-gray-100 overflow-hidden">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-green">What Our Clients Say</h2>
+            <div class="relative w-full">
+                <div id="testimonial-container" class="flex transition-transform duration-500 ease-in-out">
+                    <!-- Testimonial 1 -->
+                    <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex text-yellow-400 mb-4 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Pak Ad Agency completely transformed our online presence. Their video production and social media strategies are top-notch. Highly recommended!"</p>
+                            <p class="font-bold">- M Ali</p>
+                            <p class="text-sm text-gray-500">CEO, Tech Solutions</p>
                         </div>
                     </div>
-                    <!-- Video 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="aspect-video">
-                            <iframe src="https://www.youtube.com/embed/Z_Ksp_4_p-w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Social Media Strategy</h3>
-                            <p class="text-gray-600">A deep dive into creating effective social media campaigns.</p>
+                    <!-- Testimonial 2 -->
+                    <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex text-yellow-400 mb-4 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"The team at Pak Ad Agency is incredibly professional and creative. They helped us launch our new website with a seamless design and great marketing plan."</p>
+                            <p class="font-bold">- Fatima Ahmed</p>
+                            <p class="text-sm text-gray-500">Marketing Manager, Ali</p>
                         </div>
                     </div>
-                    <!-- Video 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                        <div class="aspect-video">
-                            <iframe src="https://www.youtube.com/embed/9zB4_ifY8f8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Web Design Principles</h3>
-                            <p class="text-gray-600">Exploring the fundamentals of modern web design.</p>
+                    <!-- Testimonial 3 -->
+                    <div class="flex-none w-full md:w-1/2 lg:w-1/3 p-4">
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="flex text-yellow-400 mb-4 text-xl">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-4">"Exceptional service and outstanding results. Our social media engagement has increased by over 200% since we started working with them."</p>
+                            <p class="font-bold">- Zeeshan Tariq</p>
+                            <p class="text-sm text-gray-500">Founder, E-Commerce Hub</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Services</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <!-- Service 1: Social Media Advertising -->
-                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                        <div class="text-4xl text-primary-green mb-4">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Social Media Advertising</h3>
-                        <p class="text-gray-600">Targeted ad campaigns on platforms like Facebook, Instagram, and LinkedIn to reach your ideal customers.</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-green">Get in Touch</h2>
+            <div class="max-w-2xl mx-auto p-8 rounded-xl shadow-xl bg-gradient-to-br from-primary-green/90 to-secondary-blue/90 text-white">
+                <!-- IMPORTANT: Replace YOUR_FORMSPREE_CODE with your actual Formspree form ID. -->
+                <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_CODE" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-lg font-medium mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg text-dark-gray focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300" required>
                     </div>
-                    <!-- Service 2: Video Production -->
-                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                        <div class="text-4xl text-primary-blue mb-4">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Video Production</h3>
-                        <p class="text-gray-600">High-quality promotional videos, tutorials, and corporate films that engage and convert.</p>
+                    <div>
+                        <label for="email" class="block text-lg font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg text-dark-gray focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300" required>
                     </div>
-                    <!-- Service 3: Web Design -->
-                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                        <div class="text-4xl text-primary-green mb-4">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Web Design</h3>
-                        <p class="text-gray-600">Modern, responsive, and user-friendly websites that look great on all devices.</p>
+                    <div>
+                        <label for="message" class="block text-lg font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg text-dark-gray focus:outline-none focus:ring-2 focus:ring-white transition-all duration-300" required></textarea>
                     </div>
-                    <!-- Service 4: Digital Marketing -->
-                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition duration-300">
-                        <div class="text-4xl text-primary-blue mb-4">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">Digital Marketing</h3>
-                        <p class="text-gray-600">A complete suite of digital marketing services including SEO, SEM, and content strategy.</p>
-                    </div>
+                    <button type="submit" class="w-full py-3 bg-white text-dark-gray font-bold rounded-lg shadow-md hover:bg-gray-200 transition-colors duration-300">Send Message</button>
+                    <div id="form-message" class="text-center font-semibold mt-4"></div>
+                </form>
+                <div class="mt-8 text-center space-y-4">
+                    <p class="text-xl font-bold">Or contact us directly:</p>
+                    <a href="https://wa.me/923247107542" target="_blank" class="block text-white text-lg hover:underline transition-colors duration-300"><i class="fab fa-whatsapp mr-2"></i>+92 324 7107543</a>
+                    <p class="text-lg"><i class="fas fa-phone mr-2"></i>+92 370 6428715</p>
                 </div>
             </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="py-20 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
-                <div class="relative max-w-3xl mx-auto">
-                    <!-- Testimonial Slides -->
-                    <div id="testimonial-slider" class="relative">
-                        <!-- Slide 1 -->
-                        <div class="testimonial-slide text-center p-8 bg-white rounded-lg shadow-lg">
-                            <p class="text-lg italic text-gray-700 mb-4">"Pak Ad Agency transformed our online presence. Their team is professional, creative, and delivered results beyond our expectations."</p>
-                            <div class="text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="font-bold text-lg">Ahmed Khan</p>
-                            <p class="text-gray-500">CEO, Tech Solutions</p>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div class="testimonial-slide hidden text-center p-8 bg-white rounded-lg shadow-lg">
-                            <p class="text-lg italic text-gray-700 mb-4">"The video production quality was outstanding. They captured our brand's essence perfectly. Highly recommended!"</p>
-                            <div class="text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <p class="font-bold text-lg">Fatima Ali</p>
-                            <p class="text-gray-500">Marketing Director, Creative Co.</p>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div class="testimonial-slide hidden text-center p-8 bg-white rounded-lg shadow-lg">
-                            <p class="text-lg italic text-gray-700 mb-4">"Working with them on our website was a breeze. They are responsive, attentive to detail, and truly skilled at what they do."</p>
-                            <div class="text-yellow-400 mb-4">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="font-bold text-lg">Zainab Hassan</p>
-                            <p class="text-gray-500">Founder, E-commerce Store</p>
-                        </div>
-                    </div>
-                    <!-- Slider Navigation -->
-                    <button id="prev-btn" class="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-200">
-                        <i class="fas fa-chevron-left text-gray-600"></i>
-                    </button>
-                    <button id="next-btn" class="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-200">
-                        <i class="fas fa-chevron-right text-gray-600"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="bg-primary-gradient text-white py-20">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get in Touch</h2>
-                <div class="flex flex-col md:flex-row md:space-x-12">
-                    <!-- Contact Form -->
-                    <div class="md:w-2/3 mb-12 md:mb-0">
-                        <!--
-                            IMPORTANT: To make this form work, you need to:
-                            1. Go to https://formspree.io/ and create a new form linked to your email.
-                            2. Formspree will give you a unique URL that looks like "https://formspree.io/f/your_unique_id".
-                            3. Replace the placeholder URL in the 'action' attribute below with your unique URL.
-                        -->
-                        <form action="https://formspree.io/f/your_unique_id" method="POST" class="bg-white text-gray-800 p-8 rounded-lg shadow-lg">
-                            <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
-                            <div class="mb-4">
-                                <label for="name" class="block text-sm font-bold mb-2">Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-sm font-bold mb-2">Email</label>
-                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="message" class="block text-sm font-bold mb-2">Message</label>
-                                <textarea id="message" name="message" rows="5" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-green" required></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-primary-blue hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                    <!-- Contact Details -->
-                    <div class="md:w-1/3 text-center md:text-left">
-                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
-                        <p class="mb-4">
-                            Feel free to reach out to us through any of the following methods. We are always here to help you!
-                        </p>
-                        <div class="flex items-center justify-center md:justify-start mb-4">
-                            <i class="fab fa-whatsapp text-3xl mr-4"></i>
-                    <a href="https://wa.me/923247107543" target="_blank" class="hover:underline text-lg">+92 324 7107543</a>
-                        </div>
-                        <div class="flex items-center justify-center md:justify-start">
-                            <i class="fas fa-phone text-2xl mr-4"></i>
-                    <a href="tel:+923247107543" class="hover:underline text-lg">+92 324 7107543</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mb-4">
-                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="mx-2 text-2xl hover:text-primary-green"><i class="fab fa-linkedin-in"></i></a>
+    <footer class="bg-dark-gray text-white py-12 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div>
+                <p class="text-lg">&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
+                <p class="text-sm mt-2">Contact: <a href="tel:03247107542" class="hover:underline">+923247107543</a>, <a href="tel:03706428715" class="hover:underline">+923706428715</a></p>
             </div>
-            <p class="mb-4">&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
-            <div class="border-t border-gray-700 pt-4 mt-4">
-                <p class="font-bold">Contact Us:</p>
-                <p>
-                    <a href="tel:03247107543" class="hover:underline">0324-7107543</a> |
-                    <a href="tel:03706428715" class="hover:underline">0370-6428715</a>
-                </p>
+            <div class="flex mt-6 md:mt-0 space-x-6 text-2xl">
+                <a href="#" class="hover:text-primary-green transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-primary-green transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-primary-green transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-primary-green transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
-
-    <!-- Fixed WhatsApp Button -->
-        <a href="https://wa.me/923247107543" target="_blank" class="fixed bottom-8 right-8 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg z-50 transition-transform transform hover:scale-110">
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </a>
-
+    
+    <!-- JavaScript for Mobile Menu, Form Validation, and Carousel Logic -->
     <script>
+        // Mobile Menu Logic
         const burgerBtn = document.getElementById('burger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-btn');
 
         burgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.remove('hidden');
         });
 
-        // Close menu when a link is clicked
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
         });
 
-        // Hero Carousel
-        const carouselSlides = document.querySelectorAll('.carousel-slide');
-        const carouselDots = document.querySelectorAll('.carousel-dot');
-        let currentCarouselSlide = 0;
-        let carouselInterval;
-
-        function showCarouselSlide(n) {
-            carouselSlides.forEach((slide, index) => {
-                slide.classList.add('opacity-0', 'z-0');
-                slide.classList.remove('opacity-100', 'z-10');
-                if (index === n) {
-                    slide.classList.add('opacity-100', 'z-10');
-                    slide.classList.remove('opacity-0', 'z-0');
-                }
-            });
-            updateCarouselDots(n);
-            currentCarouselSlide = n;
+        function hideMobileMenu() {
+            mobileMenu.classList.add('hidden');
         }
 
-        function updateCarouselDots(n) {
-            carouselDots.forEach((dot, index) => {
-                dot.classList.add('opacity-50');
-                dot.classList.remove('opacity-100');
-                if (index === n) {
-                    dot.classList.add('opacity-100');
-                    dot.classList.remove('opacity-50');
-                }
-            });
-        }
-
-        function nextCarouselSlide() {
-            let nextSlideIndex = (currentCarouselSlide + 1) % carouselSlides.length;
-            showCarouselSlide(nextSlideIndex);
-        }
-
-        function startCarousel() {
-            carouselInterval = setInterval(nextCarouselSlide, 4000); // Change slide every 4 seconds
-        }
-
-        function stopCarousel() {
-            clearInterval(carouselInterval);
-        }
-
-        if (carouselSlides.length > 0) {
-            carouselDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showCarouselSlide(index);
-                    stopCarousel(); // Optional: stop auto-slide on manual navigation
-                });
-            });
-
-            // Initialize carousel
-            showCarouselSlide(0);
-            startCarousel();
-        }
-
-        // Testimonial Slider
-        const slides = document.querySelectorAll('.testimonial-slide');
+        // Image Carousel Logic
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const carouselTexts = document.querySelectorAll('.carousel-item p');
+        const dotButtons = document.querySelectorAll('.dot-btn');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         let currentSlide = 0;
+        let slideInterval;
 
-        function showSlide(n) {
-            slides.forEach((slide, index) => {
-                slide.classList.add('hidden');
-                if (index === n) {
-                    slide.classList.remove('hidden');
-                }
+        function showSlide(index) {
+            // Hide all slides and remove active state from dots
+            carouselItems.forEach(item => item.classList.remove('active'));
+            carouselTexts.forEach(text => text.classList.remove('opacity-100'));
+            dotButtons.forEach(dot => {
+                dot.classList.remove('active-dot');
+                dot.classList.add('opacity-50');
             });
+
+            // Show the current slide and add active state to dot
+            carouselItems[index].classList.add('active');
+            carouselTexts[index].classList.add('opacity-100');
+            dotButtons[index].classList.add('active-dot');
+            dotButtons[index].classList.remove('opacity-50');
         }
 
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
+            currentSlide = (currentSlide + 1) % carouselItems.length;
             showSlide(currentSlide);
         }
 
         function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
             showSlide(currentSlide);
         }
 
-        if (slides.length > 0) {
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-
-            // Initialize slider
-            showSlide(currentSlide);
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 3000); // Auto-slide every 3 seconds
         }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Event listeners for carousel controls
+        nextBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
+        });
+
+        dotButtons.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoSlide();
+                showSlide(index);
+                currentSlide = index;
+                startAutoSlide();
+            });
+        });
+
+        // Start carousel on page load
+        window.onload = function() {
+            showSlide(currentSlide);
+            startAutoSlide();
+        };
+
+        // Pause and resume on hover
+        const carouselContainer = document.getElementById('image-carousel');
+        carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+        carouselContainer.addEventListener('mouseleave', startAutoSlide);
     </script>
 </body>
 </html>
