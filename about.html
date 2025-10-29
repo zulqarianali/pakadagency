@@ -4,71 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Pak Ad Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="assets/style.css">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-XXXXXXXXX-X');
-    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Pak Ad Agency</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
     <main>
-        <section class="page-header">
+        <section class="page-header" data-aos="fade-in">
             <div class="container">
-                <h1>About Pak Ad Agency</h1>
+                <h1>About Us</h1>
             </div>
         </section>
-
-        <section class="about-content">
+        <section id="about-page" data-aos="fade-up">
             <div class="container">
-                <div class="about-text">
-                    <h2>Our Story</h2>
-                    <p>Pak Ad Agency was founded with a simple mission: to help businesses succeed in the digital world. We are a team of passionate creators, strategists, and marketers who are dedicated to delivering exceptional results for our clients. We believe in the power of storytelling and technology to connect brands with their audiences in meaningful ways.</p>
-                    <h2>Our Mission</h2>
-                    <p>Our mission is to provide innovative and effective digital marketing and video production solutions that drive growth and create lasting value for our clients. We are committed to excellence, creativity, and building strong partnerships.</p>
-                </div>
-                <div class="about-image">
-                    <img src="assets/images/about-us.jpg" alt="About Pak Ad Agency">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="assets/images/about-us.jpg" alt="Pak Ad Agency Team" loading="lazy">
+                    </div>
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>We are Pakistan’s leading AI-powered video ad creators helping brands grow online.</p>
+                        <h3>Our Mission</h3>
+                        <p>To deliver creative and effective advertising solutions that drive results and build lasting relationships with our clients.</p>
+                        <h3>Why Choose Us?</h3>
+                        <ul>
+                            <li>Creative Excellence</li>
+                            <li>Innovative Technology</li>
+                            <li>Client-Centric Approach</li>
+                            <li>Proven Track Record</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="contact-info">
-                    <p>Contact us:</p>
-                    <p><a href="tel:+923247107543">+92 324 7107543</a></p>
-                    <p><a href="tel:+923706428715">+92 370 6428715</a></p>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 </html>
