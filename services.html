@@ -4,175 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - Pak Ad Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="assets/style.css">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-XXXXXXXXX-X');
-    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Pak Ad Agency</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="page-header">
+        <section class="page-header" data-aos="fade-in">
             <div class="container">
                 <h1>Our Services</h1>
             </div>
         </section>
 
-        <section class="service-detail">
+        <section id="services-page" data-aos="fade-up">
             <div class="container">
-                <div class="service-item">
-                    <h2>Video Editing</h2>
-                    <p>We provide top-tier video editing services that bring your footage to life. Our team of skilled editors uses the latest software and techniques to create compelling and polished videos that capture your audience's attention.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>Professionally edited video in your desired format (MP4, MOV, etc.)</li>
-                        <li>Color correction and grading</li>
-                        <li>Sound design and mixing</li>
-                        <li>Motion graphics and text overlays</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> 5-7 business days</p>
-                    <h3>Example Projects:</h3>
-                    <div class="example-projects">
-                        <a href="portfolio.html#project1">Project A</a>,
-                        <a href="portfolio.html#project2">Project B</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>Video Editing 🎬</h2>
+                    <p>High-quality video editing services to make your content shine. We handle everything from basic cuts to advanced color grading and motion graphics.</p>
                 </div>
-
-                <div class="service-item">
-                    <h2>AI Video Ads</h2>
-                    <p>Leverage the power of artificial intelligence to create high-impact video ads at scale. Our AI-driven process allows for rapid creation and optimization of video content, perfect for social media campaigns and digital advertising.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>Multiple AI-generated video ad variations</li>
-                        <li>Scriptwriting and voice-over generation</li>
-                        <li>Custom branding and visuals</li>
-                        <li>Performance analytics and optimization</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> 2-3 business days</p>
-                    <h3>Example Projects:</h3>
-                    <div class="example-projects">
-                        <a href="portfolio.html#project3">Project C</a>,
-                        <a href="portfolio.html#project4">Project D</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>Real-Person Ads 🎥</h2>
+                    <p>Authentic and engaging video ads featuring real people. We manage the entire production process, from casting to final delivery.</p>
                 </div>
-
-                <div class="service-item">
-                    <h2>Short Video Ads</h2>
-                    <p>Capture attention on social media with short, engaging video ads. We specialize in creating bite-sized content for platforms like TikTok, Instagram Reels, and YouTube Shorts that drives engagement and conversions.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>15-60 second video ads</li>
-                        <li>Vertical video formatting</li>
-                        <li>Trendy music and effects</li>
-                        <li>Captioning and subtitles</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> 3-5 business days</p>
-                    <h3>Example Projects:</h3>
-                    <div class="example-projects">
-                        <a href="portfolio.html#project5">Project E</a>,
-                        <a href="portfolio.html#project6">Project F</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>AI Video Ads 🤖</h2>
+                    <p>Leverage the power of AI to create stunning video ads in a fraction of the time and cost. Perfect for social media campaigns.</p>
                 </div>
-
-                 <div class="service-item">
-                    <h2>Social Media Advertising</h2>
-                    <p>Reach your target audience with precision-targeted social media advertising campaigns. We manage your ad spend across platforms like Facebook, Instagram, and LinkedIn to maximize your ROI.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>Campaign strategy and setup</li>
-                        <li>Ad creative design</li>
-                        <li>Audience targeting and segmentation</li>
-                        <li>Performance tracking and reporting</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> Ongoing monthly service</p>
-                    <h3>Example Projects:</h3>
-                    <div class="example-projects">
-                        <a href="portfolio.html#project7">Client G</a>,
-                        <a href="portfolio.html#project8">Client H</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>Short Form Reels / TikTok Ads 📱</h2>
+                    <p>Create viral-worthy short-form video content for TikTok, Instagram Reels, and YouTube Shorts. We stay on top of the latest trends to ensure your content performs.</p>
                 </div>
-
-                <div class="service-item">
-                    <h2>Web Design</h2>
-                    <p>We build beautiful, responsive, and user-friendly websites that serve as the digital face of your brand. Our designs are optimized for performance and conversion, ensuring a seamless experience for your visitors.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>Custom website design and development</li>
-                        <li>Mobile-first responsive design</li>
-                        <li>Content Management System (CMS) integration</li>
-                        <li>SEO-friendly architecture</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> 4-6 weeks</p>
-                    <h3>Example Projects:</h3>
-                     <div class="example-projects">
-                        <a href="portfolio.html#project9">Website I</a>,
-                        <a href="portfolio.html#project10">Website J</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>Web Design 🌐</h2>
+                    <p>We design and develop beautiful, responsive, and high-converting websites that will be the centerpiece of your digital presence.</p>
                 </div>
-
-                <div class="service-item">
-                    <h2>Digital Marketing</h2>
-                    <p>Our comprehensive digital marketing strategies are designed to boost your online presence and drive growth. We combine SEO, content marketing, and PPC to create a holistic approach that delivers results.</p>
-                    <h3>Deliverables:</h3>
-                    <ul>
-                        <li>Full marketing strategy development</li>
-                        <li>Search Engine Optimization (SEO)</li>
-                        <li>Content creation (blog posts, articles)</li>
-                        <li>Pay-Per-Click (PPC) campaign management</li>
-                    </ul>
-                    <p><strong>Typical Timeline:</strong> Ongoing monthly service</p>
-                    <h3>Example Projects:</h3>
-                    <div class="example-projects">
-                        <a href="portfolio.html#project11">Client K</a>,
-                        <a href="portfolio.html#project12">Client L</a>
-                    </div>
-                    <a href="contact.html" class="cta-primary">Request Quote</a>
+                <div class="service-detail">
+                    <h2>Digital Marketing 📈</h2>
+                    <p>Comprehensive digital marketing strategies to grow your brand and reach your target audience. We offer SEO, PPC, and social media management services.</p>
                 </div>
+                <a href="contact.html" class="cta-primary">Request Custom Package</a>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="contact-info">
-                    <p>Contact us:</p>
-                    <p><a href="tel:+923247107543">+92 324 7107543</a></p>
-                    <p><a href="tel:+923706428715">+92 370 6428715</a></p>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
+            <p>&copy; 2025 Pak Ad Agency. Powered by Urdu Ai Official.</p>
         </div>
     </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 </html>

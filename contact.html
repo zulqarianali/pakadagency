@@ -4,61 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Pak Ad Agency</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="assets/style.css">
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-XXXXXXXXX-X');
-    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <header id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Pak Ad Agency</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="page-header">
+        <section class="page-header" data-aos="fade-in">
             <div class="container">
                 <h1>Contact Us</h1>
+                <p>Start Your Ad Project Today!</p>
             </div>
         </section>
 
-        <section class="contact-content">
+        <section id="contact-page" data-aos="fade-up">
             <div class="container">
-                <div class="contact-form">
-                    <h2>Send us a message</h2>
+                <div class="contact-content">
                     <form action="https://formspree.io/f/your_form_id" method="POST">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="cta-primary">Send Message</button>
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="tel" name="phone" placeholder="Phone">
+                        <textarea name="message" placeholder="Message" required></textarea>
+                        <button type="submit" class="cta-primary">Send</button>
                     </form>
-                </div>
-                <div class="contact-details">
-                    <h2>Contact Information</h2>
-                    <p><strong>Address:</strong> 123 Main Street, Lahore, Pakistan</p>
-                    <p><strong>Phone 1:</strong> <a href="tel:+923247107543">+92 324 7107543</a></p>
-                    <p><strong>Phone 2:</strong> <a href="tel:+923706428715">+92 370 6428715</a></p>
-                    <p><strong>Email:</strong> <a href="mailto:info@pakadagency.com">info@pakadagency.com</a></p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <div class="contact-info">
+                        <p><strong>WhatsApp:</strong> <a href="https://wa.me/923247107543">+92 324 7107543</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:pakadagency1@gmail.com">pakadagency1@gmail.com</a></p>
+                        <div id="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3401.533333333333!2d74.3587!3d31.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391904d4a45a2119%3A0x8c7624b61b34a4a!2sLiberty%20Market!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,21 +56,12 @@
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="contact-info">
-                    <p>Contact us:</p>
-                    <p><a href="tel:+923247107543">+92 324 7107543</a></p>
-                    <p><a href="tel:+923706428715">+92 370 6428715</a></p>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <p class="copyright">&copy; 2024 Pak Ad Agency. All Rights Reserved.</p>
+            <p>&copy; 2025 Pak Ad Agency. Powered by Urdu Ai Official.</p>
         </div>
     </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 </html>
