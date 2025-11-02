@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Ad Agency - AI Video Ads & Digital Marketing</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght0..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary color: professional accent blue */
+            --color-primary: #3b82f6; /* Blue 500 */
+            --color-accent: #60a5fa; /* Blue 400 */
+        }
+
+        /* Custom Clip-Path for Asymmetrical Image Shape (Applied to the image container) */
+        .clip-diag {
+            clip-path: polygon(0 0, 100% 5%, 100% 95%, 0% 100%);
+        }
+        
+        /* --- Hero Animations (Page Load) --- */
+        
+        /* Keyframes for Scale Up and Fade In (Replaces typing animation for clarity) */
+        @keyframes scaleUp {
+            0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        
+        /* Applied to the main H1 title */
+        .animate-scaleUp-load { 
+            animation: scaleUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        /* Keyframes for Fade In Up (used for secondary elements) */
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Applied to P and Button after H1 finishes */
+        .animate-fadeInUp-load { animation: fadeInUp 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        
+        /* --- Scroll Animations (Scroll-Animated Class) --- */
+
+        /* Scroll Animation Observers */
+        .scroll-animated {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .scroll-animated.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Delay classes for staggered effect */
+        .animate-delay-200 { transition-delay: 0.2s; }
+        .animate-delay-400 { transition-delay: 0.4s; }
+        .animate-delay-600 { transition-delay: 0.6s; }
+        .animate-delay-800 { transition-delay: 0.8s; }
+
+        /* General styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark body {
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+        }
+
+        /* Style for the video player container for aspect ratio consistency (9:16 portrait) */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; /* 9:16 aspect ratio */
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--color-primary)',
+                        'accent': 'var(--color-accent)',
+                        'whatsapp': '#25D366',
+                    },
+                    boxShadow: {
+                        'wa-pulse': '0 0 0 0 rgba(37, 211, 102, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-900 min-h-screen">
+
+    <!-- Header / Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md dark:shadow-xl dark:shadow-gray-900/50 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            
+            <!-- Logo: Added shadow for better visibility in both modes -->
+            <a href="#" class="text-xl sm:text-2xl font-extrabold text-primary tracking-tight"
+               style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2), -1px -1px 2px rgba(255,255,255,0.2);">
+                Pak Ad Agency
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-1">
+                <a href="#hero" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">Home</a>
+                <a href="Portfolio.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">Portfolio</a>
+                <a href="pricing_page.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">pricing</a>
+                <a href="services.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">Services</a>
+                <a href="about.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">About</a>
+                <a href="Clients.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">Clients</a>
+                <a href="Contact.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">Contact</a>
+            </nav>
+            
+            <!-- Theme Toggle & Mobile Menu Button -->
+            <div class="flex items-center space-x-2">
+                 <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                    <i data-lucide="sun" class="w-6 h-6 text-yellow-500 dark:text-gray-300 dark:hidden"></i>
+                    <i data-lucide="moon" class="w-6 h-6 text-primary hidden dark:inline"></i>
+                </button>
+                <!-- Mobile Menu Toggle Button -->
+                <button id="menuToggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition md:hidden">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-900 dark:text-white"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu Overlay (Hidden by default) -->
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-gray-900 shadow-2xl z-[60] p-6 pt-20 flex flex-col space-y-4 md:hidden">
+        <button id="closeMenu" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            <i data-lucide="x" class="w-6 h-6 text-gray-900 dark:text-white"></i>
+        </button>
+        <a href="#hero" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">Home</a>
+        <a href="Portfolio.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">Portfolio</a>
+        <a href="pricing_page.html" class="p-2 px-4 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-accent transition duration-300 font-semibold">pricing</a>
+        <a href="services.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">Services</a>
+        <a href="about.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">About</a>
+        <a href="Clients.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">Clients</a>
+        <a href="Contact.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-primary transition duration-200 p-2" onclick="document.getElementById('mobileMenu').classList.remove('active');">Contact</a>
+        
+        <!-- Contact details in Mobile Menu -->
+        <div class="pt-4 border-t dark:border-gray-700 border-gray-200 mt-4">
+            <p class="text-sm dark:text-gray-500 text-gray-400 mb-2">Connect:</p>
+            <a href="https://wa.me/923247107543" target="_blank" class="flex items-center text-sm dark:text-gray-300 text-gray-700 hover:text-primary transition">
+                 <!-- UPDATED: Stylized WhatsApp Icon for mobile menu -->
+                <svg class="w-4 h-4 mr-2 fill-[#25D366]" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+                </svg>
+                +923247107543 (WhatsApp)
+            </a>
+            <a href="mailto:pakadagency1@gmail.com" class="flex items-center text-sm dark:text-gray-300 text-gray-700 hover:text-primary transition mt-1">
+                 <i data-lucide="mail" class="w-4 h-4 mr-2"></i> pakadagency1@gmail.com
+            </a>
+        </div>
+    </div>
+
+
+    <main>
+        <!-- Hero Section (Title Animation Updated for Clarity) -->
+        <section id="hero" class="relative overflow-hidden pt-16 pb-16 md:pt-40 md:pb-40 min-h-[90vh] flex items-center dark:text-white text-gray-900 dark:bg-gray-900 bg-gray-50 transition-colors duration-300">
+            
+            <!-- Background Image & Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://www.theladders.com/wp-content/uploads/teamwork_190415-800x450.jpg" 
+                     alt="Professional agency background image (video poster)"
+                     class="w-full h-full object-cover filter blur-sm opacity-30 transition duration-300 dark:opacity-30"
+                     onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/0f172a/ffffff?text=Creative+Workspace+Fallback';"
+                >
+                <div class="absolute inset-0 dark:bg-gradient-to-t dark:from-gray-900 dark:via-gray-900/40 dark:to-gray-900/60"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+                <div class="md:flex md:space-x-16 items-center">
+
+                    <!-- Text Content (Animation Applied) -->
+                    <div class="md:w-5/12 text-center md:text-left space-y-4 sm:space-y-6">
+                        
+                        <!-- Main Animated Title (ScaleUp effect for high visibility) -->
+                        <h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold dark:text-white text-gray-900 leading-tight tracking-tight mx-auto md:mx-0 inline-block animate-scaleUp-load">
+                            Digital <span class="text-accent">Dominance.</span>
+                        </h1>
+
+                        <!-- Secondary Animated Tagline (fade-in after delay) -->
+                        <p class="text-xl sm:text-3xl font-light text-primary animate-fadeInUp-load opacity-0" style="animation-delay: 1.5s;">
+                            AI-Powered Commercial Video Ads for Max ROI.
+                        </p>
+
+                        <!-- Description (fade-in after delay) -->
+                        <p class="text-base sm:text-lg dark:text-gray-300 text-gray-600 max-w-xl md:max-w-none mx-auto animate-fadeInUp-load opacity-0" style="animation-delay: 2.0s;">
+                            We craft **High-Conversion Video Ads** using professional models (male/female), real people, and cutting-edge AI to ensure your commercial campaigns achieve mass-scale gravity and drive superior business growth.
+                        </p>
+
+                        <!-- Call to Action Button (links to portfolio) -->
+                        <a href="Portfolio.html" class="inline-block px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-bold rounded-xl bg-primary text-white shadow-xl shadow-primary/40 hover:bg-blue-600 transition duration-300 transform hover:scale-[1.02] active:scale-95 animate-fadeInUp-load opacity-0" style="animation-delay: 2.5s;">
+                            Start Your Project Now
+                        </a>
+                    </div>
+                    
+                    <!-- Image Placeholder (Scroll Animation) -->
+                    <div class="md:w-7/12 mt-12 md:mt-0 scroll-animated">
+                        <div class="relative overflow-hidden rounded-3xl shadow-2xl dark:shadow-gray-700/50 shadow-gray-300/50 clip-diag dark:bg-gray-800 bg-gray-100 aspect-[3/2] border-4 dark:border-gray-700 border-gray-200">
+                            
+                            <!-- Placeholder image for visual effect -->
+                            <img src="https://www.theladders.com/wp-content/uploads/teamwork_190415-800x450.jpg"
+                                 alt="A professional digital agency team collaborating in a modern office"
+                                 class="w-full h-full object-cover transition duration-500 hover:scale-105"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/900x600/0f172a/ffffff?text=Team+Working+Fallback';"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 hidden sm:hidden md:block animate-fadeInUp-load opacity-0" style="animation-delay: 3.0s;">
+                <i data-lucide="chevrons-down" class="w-8 h-8 text-primary animate-bounce"></i>
+            </div>
+        </section>
+        
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-16 md:py-24 dark:bg-gray-800 bg-gray-100 transition-colors duration-300 border-t dark:border-gray-700 border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4 dark:text-white text-gray-900 scroll-animated">
+                    Our High-Impact Video Portfolio
+                </h2>
+                <p class="text-lg text-center dark:text-gray-400 text-gray-600 mb-12 md:mb-16 max-w-4xl mx-auto scroll-animated animate-delay-200">
+                    Discover cinematic commercial video advertisements crafted for conversion and exceptional brand recall.
+                </p>
+
+                <!-- Video Gallery (Scroll Animations Applied) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                    
+                    <!-- Video Card 1 -->
+                    <div class="portfolio-card dark:bg-gray-900 bg-white p-3 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 scroll-animated animate-delay-200">
+                        
+                        <!-- Video Player (No poster attribute, uses first frame as thumbnail) -->
+                        <div class="video-container rounded-xl overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+                             <video controls class="w-full h-full" preload="metadata">
+                                 <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761994263/E_-Commerence.finl_2_sjnfik.mp4" type="video/mp4">
+                                 Your browser does not support the video tag.
+                             </video>
+                        </div>
+                        
+                        <div class="p-2">
+                            <h3 id="video-title-1" class="text-lg font-semibold dark:text-white text-gray-900 mb-2">E-Commerce Brand Video Ad</h3>
+                            <p class="text-sm dark:text-gray-400 text-gray-600 mb-4">
+                                Dynamic ad to drive sales for an online retail brand.
+                            </p>
+                            
+                            <!-- UPDATED: WhatsApp Button with stylized logo -->
+                            <a href="#" 
+                               onclick="sendWhatsAppMessage('E-Commerce Brand Video Ad')"
+                               class="whatsapp-btn flex items-center justify-center space-x-2 w-full py-2 rounded-full bg-[#25D366] text-white font-bold text-sm shadow-md shadow-green-500/30 hover:bg-[#128C7E] transition duration-300 transform hover:scale-[1.01]"
+                               target="_blank"
+                            >
+                                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+                                </svg>
+                                <span>Discuss on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div class="portfolio-card dark:bg-gray-900 bg-white p-3 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 scroll-animated animate-delay-400">
+                        
+                        <!-- Video Player (No poster attribute) -->
+                        <div class="video-container rounded-xl overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+                            <video controls class="w-full h-full" preload="metadata">
+                                 <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761994737/Al-SUDIA_power_plus_Kyunki.finl4_jmtai2.mp4" type="video/mp4">
+                                 Your browser does not support the video tag.
+                             </video>
+                        </div>
+                        
+                        <div class="p-2">
+                            <h3 id="video-title-2" class="text-lg font-semibold dark:text-white text-gray-900 mb-2">Cinematic Travel Short</h3>
+                            <p class="text-sm dark:text-gray-400 text-gray-600 mb-4">
+                                Visually rich short film to promote travel destination or service.
+                            </p>
+                            
+                            <!-- UPDATED: WhatsApp Button with stylized logo -->
+                            <a href="#" 
+                               onclick="sendWhatsAppMessage('Cinematic Travel Short')"
+                               class="whatsapp-btn flex items-center justify-center space-x-2 w-full py-2 rounded-full bg-[#25D366] text-white font-bold text-sm shadow-md shadow-green-500/30 hover:bg-[#128C7E] transition duration-300 transform hover:scale-[1.01]"
+                               target="_blank"
+                            >
+                                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+                                </svg>
+                                <span>Discuss on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 3 -->
+                    <div class="portfolio-card dark:bg-gray-900 bg-white p-3 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 scroll-animated animate-delay-600">
+                        
+                        <!-- Video Player (No poster attribute) -->
+                        <div class="video-container rounded-xl overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+                            <video controls class="w-full h-full" preload="metadata">
+                                 <source src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1761995142/U_Travel.finl_1_i1e65s.mp4" type="video/mp4">
+                                 Your browser does not support the video tag.
+                             </video>
+                        </div>
+                        
+                        <div class="p-2">
+                            <h3 id="video-title-3" class="text-lg font-semibold dark:text-white text-gray-900 mb-2">U-Travel Dynamic Ad</h3>
+                            <p class="text-sm dark:text-gray-400 text-gray-600 mb-4">
+                                A fast-paced, modern ad designed for social media platforms.
+                            </p>
+                            
+                            <!-- UPDATED: WhatsApp Button with stylized logo -->
+                            <a href="#" 
+                               onclick="sendWhatsAppMessage('U-Travel Dynamic Ad')"
+                               class="whatsapp-btn flex items-center justify-center space-x-2 w-full py-2 rounded-full bg-[#25D366] text-white font-bold text-sm shadow-md shadow-green-500/30 hover:bg-[#128C7E] transition duration-300 transform hover:scale-[1.01]"
+                               target="_blank"
+                            >
+                                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+                                </svg>
+                                <span>Discuss on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                 <!-- View More Button -->
+                <div class="text-center mt-16 scroll-animated animate-delay-800">
+                    <a href="Portfolio.html" class="inline-block px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-bold rounded-xl bg-gray-900 dark:bg-gray-700 text-white shadow-xl shadow-gray-900/40 hover:bg-gray-700 dark:hover:bg-gray-600 transition duration-300 transform hover:scale-[1.02] active:scale-95">
+                        See More Videos / Full Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 dark:bg-gray-900 bg-white transition-colors duration-300 border-t dark:border-gray-700 border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 md:mb-16 dark:text-white text-gray-900 scroll-animated">Strategic Offerings</h2>
+
+                <!-- Service Cards (Scroll Animations Applied) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 hover:shadow-primary/30 transform hover:-translate-y-2 scroll-animated animate-delay-200">
+                        <div class="p-3 sm:p-4 rounded-xl bg-primary/20 text-primary w-fit mb-3 sm:mb-4">
+                            <i data-lucide="video" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 dark:text-white text-gray-900">High-Impact Video Production</h3>
+                        <p class="text-sm sm:text-base dark:text-gray-400 text-gray-600">
+                            Scripting, directing, and editing cinematic ads using professional models and AI, focused on conversion and virality.
+                        </p>
+                    </div>
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 hover:shadow-primary/30 transform hover:-translate-y-2 scroll-animated animate-delay-400">
+                        <div class="p-3 sm:p-4 rounded-xl bg-primary/20 text-primary w-fit mb-3 sm:mb-4">
+                            <i data-lucide="palette" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 dark:text-white text-gray-900">Brand Architecture & Design</h3>
+                        <p class="text-sm sm:text-base dark:text-gray-400 text-gray-600">
+                            Developing robust brand identities, logos, style guides, and visual assets that deliver consistency and trust across all mediums.
+                        </p>
+                    </div>
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-2xl shadow-xl dark:shadow-2xl transition duration-500 hover:shadow-primary/30 transform hover:-translate-y-2 scroll-animated animate-delay-600">
+                        <div class="p-3 sm:p-4 rounded-xl bg-primary/20 text-primary w-fit mb-3 sm:mb-4">
+                            <i data-lucide="line-chart" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 dark:text-white text-gray-900">Performance Marketing & ROAS</h3>
+                        <p class="text-sm sm:text-base dark:text-gray-400 text-gray-600">
+                            Data-driven campaign management on platforms like Facebook, Google, and TikTok to maximize Return on Ad Spend (ROAS).
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section (Content Updated & Scroll Animations Applied) -->
+        <section id="about" class="py-16 md:py-24 dark:bg-gray-800 bg-gray-100 transition-colors duration-300 border-t dark:border-gray-700 border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-3 dark:text-white text-gray-900 scroll-animated">
+                    Elevating Brands, Guaranteeing ROI
+                </h2>
+                <p class="text-base sm:text-xl text-center dark:text-gray-400 text-gray-600 mb-12 md:mb-16 max-w-3xl mx-auto scroll-animated animate-delay-200">
+                    We specialize in high-conversion commercial production, combining experienced male and female models with cutting-edge generative AI to deliver ads that capture market attention and guarantee superior **Return on Investment (ROI)**.
+                </p>
+
+                <!-- Stats (Scroll Animations Applied) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 text-center">
+                    
+                    <div class="p-6 sm:p-8 rounded-2xl dark:bg-gray-900 bg-white shadow-xl scroll-animated animate-delay-400">
+                        <i data-lucide="trending-up" class="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-accent mb-3"></i>
+                        <div class="text-5xl sm:text-6xl font-extrabold dark:text-white text-gray-900 mb-1">5+</div>
+                        <p class="text-base sm:text-lg dark:text-gray-400 text-gray-500">Years of Strategic Experience</p>
+                    </div>
+
+                    <div class="p-6 sm:p-8 rounded-2xl dark:bg-gray-900 bg-white shadow-xl scroll-animated animate-delay-600">
+                        <i data-lucide="rocket" class="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-accent mb-3"></i>
+                        <div class="text-5xl sm:text-6xl font-extrabold dark:text-white text-gray-900 mb-1">200+</div>
+                        <p class="text-base sm:text-lg dark:text-gray-400 text-gray-500">Successful Global Campaigns</p>
+                    </div>
+
+                    <div class="p-6 sm:p-8 rounded-2xl dark:bg-gray-900 bg-white shadow-xl scroll-animated animate-delay-800">
+                        <i data-lucide="handshake" class="w-10 h-10 sm:w-12 sm:h-12 mx-auto text-accent mb-3"></i>
+                        <div class="text-5xl sm:text-6xl font-extrabold dark:text-white text-gray-900 mb-1">98%</div>
+                        <p class="text-base sm:text-lg dark:text-gray-400 text-gray-500">Client Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (No change needed, using scroll-animated) -->
+        <section id="testimonials" class="py-16 md:py-24 dark:bg-gray-900 bg-white transition-colors duration-300 border-t dark:border-gray-700 border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-12 md:mb-16 dark:text-white text-gray-900 scroll-animated">
+                    Client Success Stories
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-3xl border-2 dark:border-gray-700 border-gray-200 shadow-xl transition duration-300 hover:border-primary transform hover:-translate-y-2 scroll-animated animate-delay-200">
+                        <i data-lucide="quote" class="w-7 h-7 sm:w-8 sm:h-8 text-accent mb-4 transform rotate-180"></i>
+                        <p class="italic dark:text-gray-300 text-gray-700 mb-6 text-sm sm:text-base">
+                            "The team delivered a video that wasn't just an ad—it was a cultural moment. We saw a 300% spike in engagement within the first week."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/50 flex items-center justify-center text-white font-bold text-base sm:text-lg mr-3 border-2 border-accent">JD</div>
+                            <div>
+                                <p class="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">Junaid Durrani</p>
+                                <p class="text-xs sm:text-sm dark:text-gray-400 text-gray-500">CEO, Tech Innovate</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-3xl border-2 dark:border-gray-700 border-gray-200 shadow-xl transition duration-300 hover:border-primary transform hover:-translate-y-2 scroll-animated animate-delay-400">
+                        <i data-lucide="quote" class="w-7 h-7 sm:w-8 sm:h-8 text-accent mb-4 transform rotate-180"></i>
+                        <p class="italic dark:text-gray-300 text-gray-700 mb-6 text-sm sm:text-base">
+                            "Pak Ad Agency gave our brand the voice and visual identity it needed to compete globally. Truly transformative work on a tight deadline."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/50 flex items-center justify-center text-white font-bold text-base sm:text-lg mr-3 border-2 border-accent">SK</div>
+                            <div>
+                                <p class="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">Sara Khan</p>
+                                <p class="text-xs sm:text-sm dark:text-gray-400 text-gray-500">Marketing Director, Retail Hub</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dark:bg-gray-800 bg-gray-100 p-6 sm:p-8 rounded-3xl border-2 dark:border-gray-700 border-gray-200 shadow-xl transition duration-300 hover:border-primary transform hover:-translate-y-2 scroll-animated animate-delay-600">
+                        <i data-lucide="quote" class="w-7 h-7 sm:w-8 sm:h-8 text-accent mb-4 transform rotate-180"></i>
+                        <p class="italic dark:text-gray-300 text-gray-700 mb-6 text-sm sm:text-base">
+                            "Their strategic approach to media buying resulted in a massive 4x ROAS, setting new benchmarks for our e-commerce venture. Essential partners."
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/50 flex items-center justify-center text-white font-bold text-base sm:text-lg mr-3 border-2 border-accent">AA</div>
+                            <div>
+                                <p class="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">Ali Abbas</p>
+                                <p class="text-xs sm:text-sm dark:text-gray-400 text-gray-500">Founder, E-Commerce Stars</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section (Design Improved & Scroll Animations Applied) -->
+        <section id="contact-us" class="py-16 md:py-24 dark:bg-gray-900 bg-white transition-colors duration-300 border-t dark:border-gray-700 border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-center mb-4 dark:text-white text-gray-900 scroll-animated">
+                    Ready to Start? Let's Connect.
+                </h3>
+                <p class="text-lg text-center dark:text-gray-400 text-gray-600 mb-12 md:mb-16 max-w-4xl mx-auto scroll-animated animate-delay-200">
+                    Get in touch with our team for a free consultation and strategy session.
+                </p>
+
+                <!-- UPDATED: Grid layout with enhanced professionalism -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+                    
+                    <!-- WhatsApp Card (Primary Focus, professional background) -->
+                    <div class="p-6 sm:p-8 rounded-xl bg-[#e6ffed] dark:bg-gray-800 shadow-2xl border-2 border-whatsapp/50 text-center transform hover:scale-[1.03] transition duration-300 scroll-animated animate-delay-400">
+                        
+                        <!-- UPDATED: Stylized WhatsApp Icon -->
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 text-[#25D366] fill-[#25D366]" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+                        </svg>
+                        <p class="font-bold text-lg sm:text-xl dark:text-white text-gray-900">WhatsApp Us Directly</p>
+                        <a href="https://wa.me/923247107543" target="_blank" class="dark:text-gray-400 text-gray-600 hover:text-[#128C7E] transition duration-200 block text-base sm:text-lg font-mono tracking-wider">
+                            +923247107543
+                        </a>
+                    </div>
+                    
+                    <!-- Email Card -->
+                    <div class="p-6 sm:p-8 rounded-xl dark:bg-gray-800 bg-gray-100 shadow-xl border dark:border-gray-700 border-gray-200 text-center transform hover:scale-[1.03] transition duration-300 scroll-animated animate-delay-600">
+                        <i data-lucide="mail" class="w-8 h-8 sm:w-10 sm:h-10 mx-auto text-primary mb-3"></i>
+                        <p class="font-bold text-lg sm:text-xl dark:text-white text-gray-900">Email for Detailed Query</p>
+                        <a href="mailto:pakadagency1@gmail.com" class="dark:text-gray-400 text-gray-600 hover:text-primary transition duration-200 block text-base sm:text-lg">pakadagency1@gmail.com</a>
+                    </div>
+                    
+                    <!-- Address Card -->
+                    <div class="p-6 sm:p-8 rounded-xl dark:bg-gray-800 bg-gray-100 shadow-xl border dark:border-gray-700 border-gray-200 text-center transform hover:scale-[1.03] transition duration-300 scroll-animated animate-delay-800">
+                        <i data-lucide="map-pin" class="w-8 h-8 sm:w-10 sm:h-10 mx-auto text-primary mb-3"></i>
+                        <p class="font-bold text-lg sm:text-xl dark:text-white text-gray-900">Our Strategic Location</p>
+                        <p class="dark:text-gray-400 text-gray-600 text-base sm:text-lg">123 Media Ave, Lahore, PK</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Call to Action -->
+        <section class="py-16 md:py-20 bg-primary dark:bg-blue-700 scroll-animated">
+            <div class="max-w-5xl mx-auto text-center px-4">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4 sm:mb-6">Don't Just Advertise, Dominate.</h2>
+                <p class="text-base sm:text-xl text-blue-200 mb-8 sm:mb-10">
+                    Ready to transform your marketing into high-conversion revenue streams? Let’s talk strategy.
+                </p>
+                <a href="#portfolio" class="inline-block px-10 py-3 sm:px-12 sm:py-4 text-base sm:text-xl font-bold rounded-xl bg-white text-primary shadow-2xl shadow-gray-900/50 hover:bg-gray-100 transition duration-300 transform hover:scale-[1.05] active:scale-95">
+                    View Our Work
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-0 py-8 dark:bg-gray-900 bg-gray-100 border-t dark:border-gray-700 border-gray-200 scroll-animated">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center dark:text-gray-500 text-gray-600 text-sm sm:text-base">
+            &copy; 2025 Pak Ad Agency. All rights reserved. Creative Digital Solutions.
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button (Enhanced Animation & UPDATED ICON) -->
+    <a href="https://wa.me/923247107543" target="_blank"
+       class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3 sm:p-4 bg-[#25D366] text-white rounded-full shadow-2xl transition duration-300 transform hover:scale-110 active:scale-95 group"
+       aria-label="Chat with us on WhatsApp"
+       style="animation: wa-pulse 2s infinite; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);"
+    >
+        
+        <!-- UPDATED: Stylized WhatsApp Icon -->
+        <svg class="w-6 h-6 sm:w-8 sm:h-8 fill-white" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 14.16 2.67 16.14 3.82 17.75L2.5 22L7.04 20.75C8.58 21.58 10.28 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 15.6C16.2 16.2 14.7 17.1 14.3 17.2C13.9 17.3 13.6 17.3 13 17C12.4 16.7 10.9 16.1 9.4 14.7C8.1 13.4 7.5 11.9 7.2 11.3C6.9 10.7 7 10.4 7.3 10.1C7.6 9.8 8 9.4 8.2 9.2C8.4 9 8.5 9 8.6 9.3C8.7 9.5 9.1 10.4 9.2 10.7C9.3 10.9 9.4 11 9.5 11.2C9.7 11.4 10.1 11.8 10.2 12C10.4 12.2 10.5 12.3 10.8 12.5C11 12.7 12.6 13.5 13.1 13.8C13.6 14.1 13.8 14.1 14 13.8C14.2 13.6 14.8 12.9 15 12.6C15.2 12.3 15.4 12.3 15.7 12.2C16 12.1 16.5 12 17 12.3C17.5 12.5 17.8 13.2 17.8 14C17.8 14.8 16.8 15.8 16.5 15.6Z"/>
+        </svg>
+    </a>
+
+    <!-- Custom Style for Floating WhatsApp Pulse Animation -->
+    <style>
+        @keyframes wa-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+    </style>
+
+    <!-- JavaScript for Interactivity and Animations -->
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        // Define the WhatsApp number
+        const WHATSAPP_NUMBER = "923247107543";
+
+        // Function to set the theme based on preference
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                htmlElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+        }
+        
+        /**
+         * Sends a pre-filled message to WhatsApp with the video title.
+         * @param {string} videoTitle The title of the video the user is interested in.
+         */
+        function sendWhatsAppMessage(videoTitle) {
+            const message = encodeURIComponent(`Hello, I am interested in discussing your video portfolio item: "${videoTitle}". Can you provide more details?`);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // 1. Initial Load: Check local storage or default to dark mode
+        let initialTheme = localStorage.theme;
+        
+        if (!initialTheme) {
+            initialTheme = 'dark'; // Default to dark mode if no preference set
+        }
+        
+        setTheme(initialTheme);
+
+
+        // 2. Theme Toggle Listener
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            // Re-initialize icons after theme change
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+        
+        // 3. Mobile Menu Toggle Listeners
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Hide menu on link click (for smooth scrolling)
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // 4. Scroll-triggered animations (Intersection Observer)
+        const scrollAnimatedElements = document.querySelectorAll('.scroll-animated');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Check for animation delays and add them dynamically
+                    if (entry.target.classList.contains('animate-delay-200')) {
+                        entry.target.style.transitionDelay = '0.2s';
+                    } else if (entry.target.classList.contains('animate-delay-400')) {
+                        entry.target.style.transitionDelay = '0.4s';
+                    } else if (entry.target.classList.contains('animate-delay-600')) {
+                        entry.target.style.transitionDelay = '0.6s';
+                    } else if (entry.target.classList.contains('animate-delay-800')) {
+                        entry.target.style.transitionDelay = '0.8s';
+                    }
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Trigger slightly earlier
+        });
+
+        scrollAnimatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        // Initialize Lucide Icons after the DOM is loaded
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>

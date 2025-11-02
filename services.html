@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!-- The 'dark' class is set by the script in the <head> for instant theme application -->
+<html lang="en" class="transition-colors duration-500">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pak Ad Agency - Our Creative Solutions</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Keyframes for Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Utility classes for animations */
+        .animate-slide-down {
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        .animate-on-scroll {
+            opacity: 0; /* Start invisible */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px); /* Start slightly down */
+        }
+
+        .animate-on-scroll.is-visible {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Global Styling: Use Tailwind's transition utilities for colors */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Remove the padding-bottom added for the bottom nav bar */
+            padding-bottom: 0; 
+        }
+
+        /* Icon Styling */
+        .icon {
+            stroke-width: 1.5;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+
+    <!-- 
+        CRITICAL FIX (FOUC Prevention): 
+        This IIFE (Immediately Invoked Function Expression) sets the 'dark' class 
+        on the HTML tag instantly, preventing the flash of light mode.
+    -->
+    <script>
+        // Set the theme class immediately based on local storage or system preference
+        (function() {
+            const htmlElement = document.documentElement;
+            const savedTheme = localStorage.getItem('theme');
+            const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Apply theme based on saved preference or system preference
+            if (savedTheme === 'dark' || (!savedTheme && userPrefersDark)) {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen">
+
+    <!-- 1. Header/Navbar (Sticky at the top for Logo, Links, and Mobile Toggle) -->
+    <nav class="bg-gray-900 dark:bg-gray-950 shadow-xl dark:shadow-2xl transition-colors duration-500 sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-3xl font-bold text-blue-500 tracking-wider">
+                Pak Ad Agency
+            </a>
+
+            <!-- Desktop Links, Theme Toggle, and Mobile Toggle Button -->
+            <div class="flex items-center space-x-4 md:space-x-8">
+                
+                <!-- Desktop Navigation Links (Hidden on Mobile) -->
+                <div class="hidden md:flex space-x-6 text-gray-300 dark:text-gray-200 font-medium">
+                    <a href="index.html" class="hover:text-blue-400 transition-colors duration-300">Home</a>
+                    <a href="services.html" class="hover:text-blue-400 transition-colors duration-300 font-bold text-blue-400">Services</a>
+                    <a href="about.html" class="hover:text-blue-400 transition-colors duration-300">About</a>
+                    <a href="Clients.html" class="hover:text-blue-400 transition-colors duration-300">Clients</a>
+                    <a href="Contact.html" class="hover:text-blue-400 transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- Theme Toggle Button (FIXED - Works now) -->
+                <button id="theme-toggle" class="p-2 border-2 border-gray-600 dark:border-yellow-400 rounded-full bg-transparent text-gray-400 dark:text-yellow-400 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 relative w-10 h-10 flex items-center justify-center flex-shrink-0">
+                    
+                    <!-- Sun Icon: Hidden in Light Mode (opacity-0), visible in Dark Mode (dark:opacity-100) -->
+                    <svg id="sun-icon" class="w-6 h-6 absolute transition-opacity duration-300 dark:opacity-100 opacity-0" 
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    
+                    <!-- Moon Icon: Visible in Light Mode (opacity-100), hidden in Dark Mode (dark:opacity-0) -->
+                    <svg id="moon-icon" class="w-6 h-6 absolute transition-opacity duration-300 dark:opacity-0 opacity-100" 
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                
+                <!-- Mobile Hamburger Button (Re-added) -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 hover:text-blue-400 transition-colors p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Collapsible - Toggled by Hamburger Button) -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-800 dark:bg-gray-900 shadow-inner">
+            <a href="index.html" class="block py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 rounded-lg transition-colors duration-200">Home</a>
+            <a href="services.html" class="block py-2 text-blue-400 font-bold bg-gray-700/50 hover:bg-gray-700 rounded-lg transition-colors duration-200">Services</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 rounded-lg transition-colors duration-200">About</a>
+            <a href="Clients.html" class="block py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 rounded-lg transition-colors duration-200">Clients</a>
+            <a href="Contact.html" class="block py-2 text-gray-300 hover:bg-gray-700 hover:text-blue-400 rounded-lg transition-colors duration-200">Contact</a>
+        </div>
+    </nav>
+    <!-- End Header/Navbar -->
+
+    <!-- Main Content Area -->
+    <div class="container mx-auto px-4 py-12">
+        
+        <!-- Main Title -->
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-blue-900 dark:text-blue-400 tracking-tight animate-slide-down"
+                style="animation-delay: 0.2s;">
+                Our Creative Solutions
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto opacity-0 animate-slide-down"
+               style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+                Driving growth and visual excellence for ambitious Pakistani brands.
+            </p>
+        </header>
+
+        <!-- 2. Primary Section: Video Ads & Production -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 md:p-12 mb-20 border-t-8 border-blue-600 transition-colors duration-500">
+            <!-- Animated Heading 1 -->
+            <h2 class="text-3xl md:text-5xl font-bold text-center text-blue-800 dark:text-blue-400 mb-10 opacity-0 animate-slide-down"
+                style="animation-delay: 1.2s; animation-fill-mode: forwards;">
+                High-Impact Video Advertising
+            </h2>
+
+            <!-- Video Feature Grid (Responsive: 1 column on mobile, 2 on tablet, 3 on desktop) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Card 1: Short-Form Video Ads -->
+                <div class="p-6 bg-gray-50 border border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll">
+                    <svg class="icon text-red-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">Short-Form Video Ads</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Viral content production tailored for TikTok, Instagram Reels, and Shorts. Fast, engaging, and mobile-optimized.</p>
+                </div>
+
+                <!-- Card 2: YouTube/PPC Video Ad Creation -->
+                <div class="p-6 bg-gray-50 border border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <svg class="icon text-red-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">YouTube/PPC Video Ad Creation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Compelling pre-roll, in-stream, and discovery ads designed to drive high conversion rates on Google Ads.</p>
+                </div>
+
+                <!-- Card 3: Corporate & Explainer Videos -->
+                <div class="p-6 bg-gray-50 border border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <svg class="icon text-yellow-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m-9 11h10a2 2 0 002-2V9a2 2 0 00-2-2h-3v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">Corporate & Explainer Videos</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Professional visual narratives for internal communication, product launches, or website landing pages.</p>
+                </div>
+
+                <!-- Card 4: Professional Scripting & Storyboarding -->
+                <div class="p-6 bg-gray-50 border border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.3s;">
+                    <svg class="icon text-green-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">Professional Scripting</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">The foundation of a great ad: polished scripts and detailed storyboards that guarantee message clarity and impact.</p>
+                </div>
+
+                <!-- Card 5: AI Video Generation -->
+                <div class="p-6 bg-blue-50 border border-blue-200 dark:bg-blue-950 dark:border-blue-700 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.4s;">
+                    <svg class="icon text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 7a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 9l3 3m0 0l-3 3"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-blue-700 dark:text-blue-300">AI Video Generation</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Cutting-edge services for rapid, scalable content: <span class="font-bold">Normal Tier</span> (stock footage) & <span class="font-bold text-blue-900 dark:text-blue-200">Professional Tier</span> (custom avatars/VO).</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. Secondary Section: Graphic Design & Branding -->
+        <section class="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-2xl p-6 md:p-12 border-t-8 border-purple-600 transition-colors duration-500">
+            <!-- Animated Heading 2 -->
+            <h2 class="text-3xl md:text-5xl font-bold text-center text-purple-800 dark:text-purple-400 mb-10 opacity-0 animate-slide-down"
+                style="animation-delay: 1.6s; animation-fill-mode: forwards;">
+                Stunning Visual Branding
+            </h2>
+
+            <!-- Graphic Design Feature Grid (Responsive: 1 column on mobile, 2 on tablet, 4 on desktop) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Card 6: Custom Logo Design -->
+                <div class="p-6 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0s;">
+                    <svg class="icon text-purple-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2-3-.895-3-2 1.343-2 3-2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 14c-4.418 0-8 1.79-8 4h16c0-2.21-3.582-4-8-4z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-purple-700 dark:text-purple-300">Custom Logo Design</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Unique, vector-based logo concepts that capture your brand's essence and market position.</p>
+                </div>
+
+                <!-- Card 7: Social Media Graphics -->
+                <div class="p-6 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.1s;">
+                    <svg class="icon text-pink-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v-1a4 4 0 014-4h8a4 4 0 014 4v1m-6 0h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-purple-700 dark:text-purple-300">Social Media Graphics</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">High-converting posts, stories, and platform banners optimized for engagement across all major networks.</p>
+                </div>
+
+                <!-- Card 8: Digital Flyers & Posters -->
+                <div class="p-6 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.2s;">
+                    <svg class="icon text-teal-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-2.414-2.414a1 1 0 00-.707-.293H9a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6v3a1 1 0 01-1 1H5"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-purple-700 dark:text-purple-300">Digital Flyers & Posters</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Visually striking designs for email marketing, paid campaigns, and local digital distribution.</p>
+                </div>
+
+                <!-- Card 9: Complete Brand Identity Kit -->
+                <div class="p-6 bg-purple-50 border border-purple-200 dark:bg-purple-950 dark:border-purple-700 rounded-xl shadow-lg hover:shadow-xl transition duration-300 animate-on-scroll" style="animation-delay: 0.3s;">
+                    <svg class="icon text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2m-2 0V5h-2M7 7h10"></path>
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-purple-700 dark:text-purple-300">Brand Identity Kit</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Everything needed for brand consistency: style guides, color palettes, typography rules, and usage standards.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer Call to Action -->
+        <footer class="mt-16 text-center">
+            <a href="#" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 text-lg">
+                Start Your Project Today
+            </a>
+        </footer>
+    </div>
+    <!-- End Main Content Area -->
+
+    <!-- Main Application Script (runs after DOM content is ready) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const htmlElement = document.documentElement;
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            // --- Theme Logic: Simplified and more robust using classList.toggle ---
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    // 1. Toggle the 'dark' class directly on the HTML element
+                    htmlElement.classList.toggle('dark'); 
+
+                    // 2. Read the resulting state and update localStorage
+                    const isNowDark = htmlElement.classList.contains('dark');
+                    localStorage.setItem('theme', isNowDark ? 'dark' : 'light'); 
+                });
+            }
+
+            // --- Mobile Menu Toggle Logic (Hamburger Menu) ---
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    // Toggle the 'hidden' class on the mobile menu
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Toggle the icons
+                    hamburgerIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                });
+            }
+            
+            // --- Intersection Observer (On-Scroll Animation) Logic ---
+
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: "0px 0px -100px 0px",
+                threshold: 0.1
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
