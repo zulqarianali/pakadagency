@@ -15,6 +15,10 @@ function initializeHeader() {
             htmlElement.classList.remove('dark');
             localStorage.theme = 'light';
         }
+        // Re-initialize icons after theme change
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 
     // 1. Initial Load: Check local storage or default to dark mode
@@ -32,10 +36,6 @@ function initializeHeader() {
             const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             setTheme(newTheme);
-            // Re-initialize icons after theme change
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
         });
     }
 
@@ -109,10 +109,29 @@ scrollAnimatedElements.forEach(element => {
     observer.observe(element);
 });
 
+// 5. Portfolio Tab Switching
+document.addEventListener('DOMContentLoaded', () => {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const portfolioContents = document.querySelectorAll('.portfolio-content');
 
-// Initialize Lucide Icons after the DOM is loaded
-document.addEventListener('DOMContentLoaded', (event) => {
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+
+            // Deactivate all buttons and hide all content
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            portfolioContents.forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('active');
+            });
+
+            // Activate the clicked button and show the target content
+            button.classList.add('active');
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                targetContent.classList.add('active');
+            }
+        });
+    });
 });
