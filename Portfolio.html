@@ -1,6 +1,14 @@
+
+
+
+
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Portfolio | Video Ads & Graphic Design | Pak Ad Agency</title>
@@ -32,7 +40,6 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         /* Preserve Existing Design Aesthetics */
         :root {
@@ -41,12 +48,12 @@
 
         /* Light & Dark Mode Body Styles */
         body {
-            background-color: #f3f4f6; /* gray-100 */
-            color: #1f2937; /* gray-800 */
+            background-color: #000000; /* black */
+            color: #f9fafb; /* gray-50 */
         }
         .dark body {
             background-color: #0f172a; /* Darker background for dark mode */
-            color: #f9fafb; /* gray-50 */
+            color: #318fee; /* gray-50 */
         }
 
         /* Ensure smooth transitions with animations */
@@ -80,7 +87,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background-color: transparent;
+            background-color:transparent;
         }
 
         /* Style for active tab to maintain design consistency */
@@ -89,8 +96,8 @@
         }
         .tab-button.active {
             /* Applied new Accent Blue: #4A90E2 (Replacing cyan-500) */
-            background-color: #4A90E2;
-            color: white;
+            background-color: #83f59f;
+            color: rgb(85, 38, 255);
             box-shadow: 0 4px 6px -1px rgba(74, 144, 226, 0.4), 0 2px 4px -2px rgba(74, 144, 226, 0.3);
             transform: translateY(-1px);
         }
@@ -175,18 +182,57 @@
         html.dark body { background-color: #0f172a; }
     </style>
     <script>
-        // FOUC Prevention
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
+        // FOUC Prevention Script
+        (function() {
+            const isDark = localStorage.getItem('theme') === 'dark' ||
+                           (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
     </script>
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
+<body class="min-h-screen antialiased overflow-x-hidden">
 
-    <div id="header-placeholder"></div>
+    <!-- Header & Navigation -->
+    <header class="bg-white/90 dark shadow-md sticky top-0 z-20 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo: Uses Brand Green in Light Mode, Vibrant Cyan/Blue in Dark Mode -->
+            <h1 class="text-2xl font-bold text-[#006A4E] dark:text-[#4A90E2] transition-colors duration-300">Pak Ad Agency</h1>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Home</a>
+                <a href="services.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Services</a>
+                <a href="pricing_page.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Pricing</a>
+                <a href="Portfolio.html" class="text-sm font-medium text-gray-900 dark:text-white border-b-2 border-[#FF9900] dark:border-[#4A90E2] transition-colors duration-300">Portfolio</a>
+                <a href="clients.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Clients</a>
+                <a href="contact.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-2">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
+                    <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="p-2 rounded-full text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 md:hidden">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-[#101925] shadow-2xl z-[60] p-6 pt-20 flex-col space-y-4 md:hidden hidden">
+        <button id="close-menu-button" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            <i data-lucide="x" class="w-6 h-6 text-gray-900 dark:text-white"></i>
+        </button>
+        <a href="index.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Home</a>
+        <a href="services.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Services</a>
+        <a href="pricing_page.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Pricing</a>
+        <a href="Portfolio.html" class="text-lg font-semibold text-[#FF9900] dark:text-[#4A90E2] transition duration-200 p-2">Portfolio</a>
+        <a href="clients.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Clients</a>
+        <a href="contact.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Contact</a>
+    </div>
 
     <main class="py-16 transition-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -207,7 +253,7 @@
                 </div>
             </div>
 
-            <div id="portfolio-container" class="bg-white dark:bg-[#1f2937] p-8 sm:p-12 rounded-xl shadow-2xl transition-bg">
+            <div id="portfolio-container" class="bg-#498af5 dark:bg-[#1f2937] p-8 sm:p-12 rounded-xl shadow-2xl transition-bg">
 
                 <div id="video-portfolio" class="portfolio-content active">
                     <h2 class="text-3xl font-bold mb-6 border-b pb-3 border-gray-200 dark:border-gray-700">Ai Video Ads All categories</h2>
@@ -229,7 +275,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="shopping-bag" class="w-5 h-5 mr-2 text-[#ffe200]"></i> E-Commerce Brand Video Ad
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#8f1a09] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="shopping-bag" class="w-5 h-5 mr-2 text-[#05ff33]"></i> E-Commerce Brand Video Ad
                                 </p>
                             </div>
 
@@ -258,7 +304,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="plane" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Cinematic Travel Short
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="plane" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Cinematic Travel Short
                                 </p>
                             </div>
 
@@ -287,7 +333,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="sparkles" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Dynamic Logo Reveal
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="sparkles" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Dynamic Logo Reveal
                                 </p>
                             </div>
 
@@ -316,7 +362,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="egg-fried" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Clothes video Ad
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="egg-fried" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Clothes video Ad
                                 </p>
                             </div>
 
@@ -345,7 +391,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="book-open-text" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Educational Content Reel
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="book-open-text" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Educational Content Reel
                                 </p>
                             </div>
 
@@ -374,7 +420,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center"> <i data-lucide="home" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Real Estate Walkthrough
+                            <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg"> <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center"> <i data-lucide="home" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Real Estate Walkthrough
                                 </p>
                             </div>
 
@@ -400,8 +446,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> HAJJ SERVICES Video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> HAJJ SERVICES Video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -423,8 +469,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Travel agency
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Travel agency
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -446,8 +492,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> School and College
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> School and College
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -469,8 +515,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Beauty cream video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Beauty cream video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -492,8 +538,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i>Beauty cream2 Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i>Beauty cream2 Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -515,8 +561,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Hand movement video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Hand movement video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -538,8 +584,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> AI VO3 video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> AI VO3 video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -561,8 +607,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> AI VO3 video Ad2
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> AI VO3 video Ad2
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -584,8 +630,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Shop Video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Shop Video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -607,8 +653,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Hijab video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Hijab video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -630,8 +676,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Another Language Video
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Another Language Video
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -653,8 +699,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> Clothing
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> Clothing
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -676,8 +722,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i>Beauty Cream
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i>Beauty Cream
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -699,8 +745,8 @@
                                 </div>
                             </div>
                             <div class="mt-3 py-2 border-y border-gray-200 dark:border-[#3E5C7D] transition-bg">
-                                <p class="text-center text-lg font-medium text-[#ffffff] flex items-center justify-center">
-                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#ffe200]"></i> AI  video Ad
+                                <p class="text-center text-lg font-medium text-[#000000] flex items-center justify-center">
+                                    <i data-lucide="video" class="w-5 h-5 mr-2 text-[#05ff33]"></i> AI  video Ad
                                 </p>
                             </div>
                             <div class="p-3 pt-4 flex justify-center">
@@ -846,33 +892,286 @@
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+    <footer class="bg-gray-200 dark:bg-[#101925] text-white py-6 transition-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p class="text-gray-600 dark:text-gray-400">&copy; 2024 Zulqarnain Ali. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="assets/js/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fetch and insert the header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                    // Now that the header is loaded, initialize its functionality
-                    initializeHeader();
-                });
-
-            // Fetch and insert the footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                });
-        });
-
         AOS.init({
             duration: 800,
             once: true,
             easing: 'ease-in-out'
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- Theme Toggle Logic ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            function applyTheme(isDark) {
+                htmlEl.classList.toggle('dark', isDark);
+                document.body.classList.toggle('dark', isDark);
+                if(icon) icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                lucide.createIcons();
+            }
+
+            // Initial theme is set by FOUC script
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const isNowDark = !htmlEl.classList.contains('dark');
+                    applyTheme(isNowDark);
+                    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                });
+            }
+
+            // Mobile menu toggle logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu-overlay');
+            const closeMenuButton = document.getElementById('close-menu-button');
+
+            if (mobileMenuButton && mobileMenu && closeMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                });
+
+                closeMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            }
+
+            // Tab Switching Logic
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.portfolio-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-target');
+
+                    // Deactivate all tabs and hide all content
+                    tabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.classList.add('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+                        t.classList.remove('bg-[#4A90E2]', 'text-white');
+                    });
+                    contents.forEach(c => c.classList.add('hidden'));
+
+                    // Activate the clicked tab and show the target content
+                    tab.classList.add('active');
+                    tab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+
+                    // NEW: Refresh AOS when switching tabs to trigger animations in the new content
+                    AOS.refresh();
+                });
+            });
+
+            // Set initial active state for the Video tab (as it is the default 'active' class in HTML)
+            const initialTab = document.querySelector('.tab-button[data-target="video-portfolio"]');
+            if(initialTab) {
+                initialTab.classList.add('active');
+                initialTab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+            }
+
+        });
+    </script>
+</body>
+</html>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </main>
+
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- Theme Toggle Logic ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            function applyTheme(isDark) {
+                htmlEl.classList.toggle('dark', isDark);
+                document.body.classList.toggle('dark', isDark);
+                if(icon) icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                lucide.createIcons();
+            }
+
+            // Initial theme is set by FOUC script
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const isNowDark = !htmlEl.classList.contains('dark');
+                    applyTheme(isNowDark);
+                    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                });
+            }
+
+            // Mobile menu toggle logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu-overlay');
+            const closeMenuButton = document.getElementById('close-menu-button');
+
+            if (mobileMenuButton && mobileMenu && closeMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenu.classList.add('flex');
+                });
+
+                closeMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            }
+
+            // Tab Switching Logic
+            const tabs = document.querySelectorAll('.tab-button');
+            const contents = document.querySelectorAll('.portfolio-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.getAttribute('data-target');
+
+                    // Deactivate all tabs and hide all content
+                    tabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.classList.add('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+                        t.classList.remove('bg-[#4A90E2]', 'text-white');
+                    });
+                    contents.forEach(c => c.classList.add('hidden'));
+
+                    // Activate the clicked tab and show the target content
+                    tab.classList.add('active');
+                    tab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+
+                    // NEW: Refresh AOS when switching tabs to trigger animations in the new content
+                    AOS.refresh();
+                });
+            });
+
+            // Set initial active state for the Video tab (as it is the default 'active' class in HTML)
+            const initialTab = document.querySelector('.tab-button[data-target="video-portfolio"]');
+            if(initialTab) {
+                initialTab.classList.add('active');
+                initialTab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
+            }
+
+        });
+    </script>
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Floating Button</title>
+    <style>
+        /* WhatsApp Floating Button Styles */
+        #whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        #whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        #whatsapp-float:active {
+            transform: scale(0.95);
+        }
+
+        #whatsapp-icon {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Ensure it doesn't interfere with other elements */
+        #whatsapp-float * {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your website content goes here -->
+
+    <!-- WhatsApp Floating Button -->
+    <a id="whatsapp-float" href="https://wa.me/923247107543" target="_blank" rel="noopener noreferrer">
+        <svg id="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        // This script ensures the button works properly and doesn't interfere with other website functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappButton = document.getElementById('whatsapp-float');
+            
+            // Add click event for analytics or additional functionality if needed
+            whatsappButton.addEventListener('click', function(e) {
+                // You can add tracking or other functionality here if needed
+                console.log('WhatsApp button clicked');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
 </body>
 </html>
