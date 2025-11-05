@@ -9,91 +9,16 @@
     <!-- Load Lucide Icons (for checkmarks) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Define custom colors */
-            --color-primary-green: #28a745; /* Primary CTA */
-            --color-secondary-blue: #007bff; /* Highlight/Accent */
-            --color-accent-yellow: #ffc107; /* Logo/Dark Mode Accent */
-        }
-
-        /* CHANGED: Set dark background for the entire page */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark Black/Gray */
-            color: #f3f4f6; /* Default light text color */
-        }
-
-        /* --- Custom Animations --- */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-down {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-
-        .animate-fade-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0; /* Start invisible */
-        }
-        
-        /* Ribbon Styles for Most Popular Card */
-        .ribbon {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 150px;
-            height: 150px;
-            overflow: hidden;
-        }
-        .ribbon::before {
-            content: "Recommended";
-            position: absolute;
-            padding: 4px 0;
-            width: 200%;
-            background-color: var(--color-secondary-blue); /* Secondary Blue */
-            color: #fff;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
-            transform: rotate(45deg);
-            right: -40px;
-            top: 25px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Mobile Menu Toggle */
-        #mobile-menu {
-            display: none;
-        }
-        @media (max-width: 768px) {
-            #mobile-menu.open {
-                display: block;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script>
+        // FOUC Prevention
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
         // Configure Tailwind to use the custom colors
         tailwind.config = {
             theme: {
@@ -106,73 +31,11 @@
                 }
             }
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Animation for pricing cards
-            const cards = document.querySelectorAll('.pricing-card');
-            cards.forEach((card, index) => {
-                // Add staggered fade-in-up animation on load
-                card.style.animationDelay = `${0.3 + index * 0.2}s`;
-            });
-
-            // Mobile menu toggle logic
-            const menuButton = document.getElementById('menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (menuButton && mobileMenu) {
-                menuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('open');
-                });
-            }
-        });
     </script>
 </head>
-<body class="bg-gray-900 min-h-screen">
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
 
-    <!-- NEW: Navigation Bar (Navbar) -->
-    <nav class="bg-black shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="#" class="text-3xl font-extrabold tracking-wider text-accent-yellow">
-                        Pak Ad Agency
-                    </a>
-                </div>
-                
-                <!-- Desktop Links -->
-                <div class="hidden md:flex md:items-center md:space-x-8">
-                    <a href="index.html" class="text-gray-300 hover:text-accent-yellow transition duration-150 py-2 text-lg font-medium">Home</a>
-                    <a href="about.html" class="text-gray-300 hover:text-accent-yellow transition duration-150 py-2 text-lg font-medium">About</a>
-                    <a href="Portfolio.html" class="text-gray-300 hover:text-accent-yellow transition duration-150 py-2 text-lg font-medium">Portfolio</a>
-                    <a href="services.html" class="text-gray-300 hover:text-accent-yellow transition duration-150 py-2 text-lg font-medium">Services</a>
-                    <a href="pricing_page.html" class="text-accent-yellow border-b-2 border-accent-yellow py-2 text-lg font-medium">Pricing</a>
-                    <a href="Contact.html" class="text-gray-300 hover:text-accent-yellow transition duration-150 py-2 text-lg font-medium">Contact</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="flex items-center md:hidden">
-                    <button id="menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu (Hidden by default) -->
-        <div class="md:hidden bg-gray-800" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
-                <a href="Portfolio.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Portfolio</a>
-                <a href="services.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Services</a>
-                <a href="pricing_page.html" class="block px-3 py-2 rounded-md text-base font-medium text-accent-yellow bg-gray-900">Pricing</a>
-                <a href="Contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
-            </div>
-        </div>
-    </nav>
-    <!-- END: Navigation Bar (Navbar) -->
+    <div id="header-placeholder"></div>
 
 
     <div class="container mx-auto px-4 py-16">
@@ -181,7 +44,7 @@
         <header class="text-center mb-16">
             <!-- CHANGED: Text color is now white/light for visibility on dark background -->
             <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight
-                       animate-fade-down opacity-0" 
+                       animate-fade-down opacity-0"
                 style="animation-fill-mode: forwards;">
                 Choose Your Path to Digital Impact.
             </h1>
@@ -204,7 +67,7 @@
                         <span class="text-white">2,000</span>
                         <span class="text-xl font-medium text-gray-400">PKR</span>
                     </div>
-                    
+
                     <!-- Features -->
                     <ul class="space-y-3 text-gray-300 mt-8">
                         <li class="flex items-center">
@@ -225,9 +88,9 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <!-- WhatsApp CTA (Updated with user's number) -->
-                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Normal%20AI%20Ad%20plan%20(PKR%202000)." 
+                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Normal%20AI%20Ad%20plan%20(PKR%202000)."
                    target="_blank"
                    class="mt-8 block w-full text-center py-3 rounded-lg font-semibold text-white bg-primary-green hover:bg-green-700 transition duration-300 shadow-md">
                     Connect on WhatsApp
@@ -244,7 +107,7 @@
                         <span class="text-white">2,500</span>
                         <span class="text-xl font-medium text-gray-400">PKR</span>
                     </div>
-                    
+
                     <!-- Features -->
                     <ul class="space-y-3 text-gray-300 mt-8">
                         <li class="flex items-center font-semibold text-secondary-blue">
@@ -267,7 +130,7 @@
                 </div>
 
                 <!-- WhatsApp CTA (Updated with user's number) -->
-                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Professional%20AI%20Ad%20plan%20(PKR%202500)." 
+                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Professional%20AI%20Ad%20plan%20(PKR%202500)."
                    target="_blank"
                    class="mt-8 block w-full text-center py-3 rounded-lg font-semibold text-white bg-primary-green hover:bg-green-700 transition duration-300 shadow-md">
                     Connect on WhatsApp
@@ -307,7 +170,7 @@
                 </div>
 
                 <!-- WhatsApp CTA (Updated with user's number) -->
-                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Standard)%20plan%20(PKR%204000)." 
+                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Standard)%20plan%20(PKR%204000)."
                    target="_blank"
                    class="mt-8 block w-full text-center py-3 rounded-lg font-semibold text-white bg-primary-green hover:bg-green-700 transition duration-300 shadow-md">
                     Connect on WhatsApp
@@ -349,13 +212,13 @@
                 </div>
 
                 <!-- WhatsApp CTA (Updated with user's number) -->
-                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Ultra/Premium)%20plan%20(PKR%205000)." 
+                <a href="https://wa.me/923247107543?text=I%20want%20to%20select%20the%20Real%20Person%20Ad%20(Ultra/Premium)%20plan%20(PKR%205000)."
                    target="_blank"
                    class="mt-8 block w-full text-center py-3 rounded-lg font-semibold text-white bg-secondary-blue hover:bg-blue-700 transition duration-300 shadow-lg">
                     Connect on WhatsApp
                 </a>
             </div>
-            
+
         </div>
 
         <!-- 5. Custom Requirements Section -->
@@ -366,7 +229,7 @@
                 If your project requires specialized direction, bulk orders, or unique media types, we are here to create a tailored strategy and quote just for you.
             </p>
             <!-- WhatsApp CTA (Updated with user's number) -->
-            <a href="https://wa.me/923247107543?text=I%20have%20custom%20requirements%20and%20need%20a%20tailored%20quote." 
+            <a href="https://wa.me/923247107543?text=I%20have%20custom%20requirements%20and%20need%20a%20tailored%20quote."
                target="_blank"
                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-primary-green hover:bg-green-700 transition duration-300 shadow-lg">
                 Discuss Custom Quote on WhatsApp
@@ -376,94 +239,30 @@
                 </svg>
             </a>
         </div>
-        
+
     </div>
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Floating Button</title>
-    <style>
-        /* WhatsApp Floating Button Styles */
-        #whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
+    <div id="footer-placeholder"></div>
 
-        #whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        #whatsapp-float:active {
-            transform: scale(0.95);
-        }
-
-        #whatsapp-icon {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* Ensure it doesn't interfere with other elements */
-        #whatsapp-float * {
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Your website content goes here -->
-
-    <!-- WhatsApp Floating Button -->
-    <a id="whatsapp-float" href="https://wa.me/923247107543" target="_blank" rel="noopener noreferrer">
-        <svg id="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
-
+    <script src="assets/js/script.js"></script>
     <script>
-        // This script ensures the button works properly and doesn't interfere with other website functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const whatsappButton = document.getElementById('whatsapp-float');
-            
-            // Add click event for analytics or additional functionality if needed
-            whatsappButton.addEventListener('click', function(e) {
-                // You can add tracking or other functionality here if needed
-                console.log('WhatsApp button clicked');
-            });
+            // Fetch and insert the header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    // Now that the header is loaded, initialize its functionality
+                    initializeHeader();
+                });
+
+            // Fetch and insert the footer
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
         });
     </script>
 </body>
 </html>
-
-
-</body>
-</html>
-

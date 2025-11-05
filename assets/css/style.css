@@ -1,0 +1,77 @@
+:root {
+    /* Primary color: professional accent blue */
+    --color-primary: #3b82f6; /* Blue 500 */
+    --color-accent: #60a5fa; /* Blue 400 */
+}
+
+/* Custom Clip-Path for Asymmetrical Image Shape (Applied to the image container) */
+.clip-diag {
+    clip-path: polygon(0 0, 100% 5%, 100% 95%, 0% 100%);
+}
+
+/* --- Hero Animations (Page Load) --- */
+
+/* Keyframes for Scale Up and Fade In (Replaces typing animation for clarity) */
+@keyframes scaleUp {
+    0% { transform: scale(0.95) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Applied to the main H1 title */
+.animate-scaleUp-load {
+    animation: scaleUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Keyframes for Fade In Up (used for secondary elements) */
+@keyframes fadeInUp {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Applied to P and Button after H1 finishes */
+.animate-fadeInUp-load { animation: fadeInUp 1.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+
+/* --- Scroll Animations (Scroll-Animated Class) --- */
+
+/* Scroll Animation Observers */
+.scroll-animated {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.scroll-animated.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Delay classes for staggered effect */
+.animate-delay-200 { transition-delay: 0.2s; }
+.animate-delay-400 { transition-delay: 0.4s; }
+.animate-delay-600 { transition-delay: 0.6s; }
+.animate-delay-800 { transition-delay: 0.8s; }
+
+/* General styles */
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+.dark body {
+    background-color: #0f172a; /* Slate 900 */
+    color: #f8fafc; /* Slate 50 */
+}
+
+/* Style for the video player container for aspect ratio consistency (9:16 portrait) */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 177.77%; /* 9:16 aspect ratio */
+}
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
