@@ -1,197 +1,300 @@
 <!DOCTYPE html>
-<!-- The 'dark' class is set by the script in the <head> for instant theme application -->
-<html lang="en" class="transition-colors duration-500">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pak Ad Agency - Our Clients & Portfolio</title>
-    <!-- Load Tailwind CSS -->
+    <title>Our Valued Clients - Pak Ad Agency</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Base styles for Navbar shadow */
+        .navbar-base {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        /* Fixed colors for the Dark Navbar (matching reference site) */
+        .navbar-dark { 
+            background-color: #0d1e34; /* Dark blue background */
+        } 
 
+        /* Custom Dark Mode Colors (Matching Reference Site's Dark Theme) */
+        .dark-primary { background-color: #071221; } /* Main background */
+        .dark-secondary { background-color: #0d1e34; } /* Section backgrounds */
+        .dark-card { background-color: #1a2d42; } /* Card backgrounds */
+        .accent-blue { color: #2E7DDC; } /* Brand accent color */
+
+        /* Custom styling for client logo cards (Circular Shape) */
+        .logo-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px; 
+            width: 120px;
+            padding: 1rem;
+            border-radius: 9999px; /* Full circle */
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            overflow: hidden; 
+            position: relative;
+            margin-left: auto; 
+            margin-right: auto; 
+            background-color: #1a2d42; /* Dark card background */
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .logo-card:hover {
+            transform: translateY(-5px) scale(1.1); 
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Logo Styling: Ensuring logos are visible and appropriately sized */
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 9999px; 
+            filter: grayscale(100%); 
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        .logo-card:hover .logo-img {
+            filter: grayscale(0%); 
+            opacity: 1;
+        }
+
+        /* Testimonial card hover effect */
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+        }
+    </style>
+    <!-- Tailwind Config for Dark Theme Colors -->
     <script>
-        // FOUC Prevention
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-blue': '#2E7DDC', 
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen">
+<!-- Applying Fixed Dark Theme Classes to Body -->
+<body class="dark-primary text-gray-200 font-sans">
+    
+    <script>
+        function setupMobileMenu() {
+            const navLinks = document.getElementById('mobile-menu-links');
+            const mobileMenuButton = document.getElementById('mobile-toggle-button');
 
-    <div id="header-placeholder"></div>
+            if (mobileMenuButton && navLinks) {
+                mobileMenuButton.addEventListener('click', () => {
+                    navLinks.classList.toggle('hidden');
+
+                    const mobileClasses = ['flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'w-full', 'py-4', 'space-y-2', 'shadow-lg', 'items-center', 'bg-dark-secondary'];
+
+                    if (navLinks.classList.contains('hidden')) {
+                        navLinks.classList.remove(...mobileClasses);
+                        navLinks.classList.add('space-x-8'); 
+                    } else {
+                        navLinks.classList.remove('space-x-8'); 
+                        navLinks.classList.add(...mobileClasses);
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', setupMobileMenu);
+    </script>
+
+    <!-- Navigation Bar (Nav Bar) - Fixed Dark Theme -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo/Brand Name -->
+            <div class="text-2xl font-extrabold tracking-wider text-blue-400">
+                PAK AD AGENCY
+            </div>
+
+            <!-- Desktop Links (All are now explicitly text-white) -->
+            <div id="mobile-menu-links" class="hidden md:flex space-x-8">
+                <!-- All links are set to text-white for permanent visibility on dark background -->
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">About Us</a>
+                <!-- Clients Link is Active/Highlighted -->
+                <a href="#" class="accent-blue font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue">Clients</a>
+                <a href="#" class="text-white hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Contact</a>
+            </div>
+
+            <!-- Removed Theme Toggle Button -->
+            
+            <!-- Mobile Menu Button - Text is set to white -->
+            <button id="mobile-toggle-button" class="md:hidden text-white hover:text-accent-blue transition duration-300 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i> 
+            </button>
+        </div>
+    </nav>
+    <!-- End Navigation Bar -->
 
     <!-- Main Content Area -->
-    <div class="container mx-auto px-4 py-12">
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Main Title & Subtitle -->
-        <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-blue-900 dark:text-blue-400 tracking-tight animate-slide-down"
-                style="animation-delay: 0.2s;">
-                Trusted by Top Pakistani Brands
-            </h1>
-            <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto opacity-0 animate-slide-down"
-               style="animation-delay: 0.8s; animation-fill-mode: forwards;">
-                We partner with ambitious companies across Pakistan to deliver market-leading creative and digital solutions.
-            </p>
-        </header>
+            <!-- Clients Hero Section -->
+            <section class="text-center mb-16 pt-8">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-blue-400 mb-4 accent-blue">
+                    Trusted by Pakistan's Industry Leaders
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+                    Our success is defined by the success of our clients. We partner with established brands, startups, and institutions across the Pakistani landscape.
+                </p>
+            </section>
 
-        <!-- 2. Section: Our Clients (Logo Grid) -->
-        <section class="mb-20">
-            <h2 class="text-2xl md:text-4xl font-bold text-center text-gray-800 dark:text-gray-200 mb-12 opacity-0 animate-on-scroll">
-                Our Esteemed Partners
-            </h2>
+            <!-- 1. Client Logos Gallery -->
+            <section class="mb-20">
+                <h2 class="text-3xl font-bold text-center text-gray-100 mb-12 border-b pb-4 border-gray-700/50">
+                    Our Valued Partners
+                </h2>
+                <p class="text-center text-gray-400 mb-8">
+                    (These are placeholder circular images. You can replace the `src` URL with your actual client logos.)
+                </p>
 
-            <!-- Logo Grid (5 columns on desktop, 3 on tablet, 2 on mobile) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-center">
+                <!-- Grid Layout for Circular Logos -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto justify-items-center">
+                    
+                    <!-- Client 1: Tech/Telecom -->
+                    <div class="logo-card" title="Tech Power Pakistan">
+                        <img src="https://placehold.co/120x120/007bff/ffffff?text=Tech" alt="Tech Pak Logo" class="logo-img">
+                    </div>
 
-                <!-- Client 1 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0s;">
-                    <img class="h-16 client-logo"
-                         src="https://media.licdn.com/dms/image/v2/C561BAQGfdzdjV4rIOg/company-background_10000/company-background_10000/0/1611995751406/techinnovators_cover?e=2147483647&v=beta&t=GA7_zMyKhAx-NhwWG-_POyNM44xxosf-qU7q-At3bas"
-                         alt="Tech Innovators Logo"
-                         onerror="this.onerror=null;this.src='https://media.licdn.com/dms/image/v2/C561BAQGfdzdjV4rIOg/company-background_10000/company-background_10000/0/1611995751406/techinnovators_cover?e=2147483647&v=beta&t=GA7_zMyKhAx-NhwWG-_POyNM44xxosf-qU7q-At3bas'">
+                    <!-- Client 2: FMCG Brand -->
+                    <div class="logo-card" title="Zaika Foods">
+                         <img src="https://placehold.co/120x120/28a745/ffffff?text=FMCG" alt="Zaika Foods Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 3: Banking/Finance -->
+                    <div class="logo-card" title="National Bank of Pakistan (Fictional)">
+                         <img src="https://placehold.co/120x120/dc3545/ffffff?text=Bank" alt="National Bank Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 4: E-Commerce Platform -->
+                    <div class="logo-card" title="Online Bazaar">
+                         <img src="https://placehold.co/120x120/ffc107/343a40?text=Ecom" alt="Online Bazaar Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 5: Real Estate -->
+                    <div class="logo-card" title="Mehran Properties">
+                         <img src="https://placehold.co/120x120/6f42c1/ffffff?text=Estate" alt="Mehran Properties Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 6: Textile Industry -->
+                    <div class="logo-card" title="Kiran Textiles">
+                         <img src="https://placehold.co/120x120/fd7e14/ffffff?text=Textile" alt="Kiran Textiles Logo" class="logo-img">
+                    </div>
+                    
+                    <!-- Client 7: Education -->
+                    <div class="logo-card" title="Ilm University">
+                         <img src="https://placehold.co/120x120/17a2b8/ffffff?text=Edu" alt="Ilm University Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 8: Healthcare -->
+                    <div class="logo-card" title="Shifa Hospital Chain">
+                         <img src="https://placehold.co/120x120/20c997/ffffff?text=Health" alt="Shifa Hospitals Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 9: Auto Industry -->
+                    <div class="logo-card" title="Sitarah Motors">
+                         <img src="https://placehold.co/120x120/6610f2/ffffff?text=Auto" alt="Sitarah Motors Logo" class="logo-img">
+                    </div>
+
+                    <!-- Client 10: Logistics Company -->
+                    <div class="logo-card" title="Tez Delivery Services">
+                         <img src="https://placehold.co/120x120/e83e8c/ffffff?text=Delivery" alt="Tez Delivery Logo" class="logo-img">
+                    </div>
+                     <!-- Client 11: IT/Software -->
+                    <div class="logo-card" title="Innovate Software">
+                         <img src="https://placehold.co/120x120/3B82F6/ffffff?text=IT" alt="Innovate Software Logo" class="logo-img">
+                    </div>
+                    <!-- Client 12: Media/News -->
+                    <div class="logo-card" title="Daily Times Media">
+                         <img src="https://placehold.co/120x120/FBBF24/ffffff?text=Media" alt="Daily Times Media Logo" class="logo-img">
+                    </div>
                 </div>
+            </section>
 
-                <!-- Client 2 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.1s;">
-                    <img class="h-16 client-logo"
-                         src="https://flipdish.imgix.net/org4118/6a8eae730b804614bbfb3764b419c62a.png"
-                         alt="Karachi Foods Logo"
-                         onerror="this.onerror=null;this.src='https://flipdish.imgix.net/org4118/6a8eae730b804614bbfb3764b419c62a.png'">
-                </div>
+            <!-- 2. Testimonials Section -->
+            <section class="mb-20 dark-secondary p-12 rounded-2xl shadow-inner border border-accent-blue/50">
+                <h2 class="text-3xl font-bold text-center text-gray-100 mb-12">
+                    What Our Clients Say
+                </h2>
 
-                <!-- Client 3 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.2s;">
-                    <img class="h-16 client-logo"
-                         src="https://s.rozee.pk/company_logos/04/93311253872566.png"
-                         alt="Lahore Textiles Logo"
-                         onerror="this.onerror=null;this.src='https://s.rozee.pk/company_logos/04/93311253872566.png'">
-                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- Review 1: Marketing Director -->
+                    <div class="testimonial-card p-6 rounded-xl dark-card shadow-xl transition duration-500 hover:shadow-2xl">
+                        <i class="fas fa-quote-left text-2xl text-blue-400 mb-4 accent-blue"></i>
+                        <p class="italic text-gray-300 mb-4 text-lg">
+                            "Their digital marketing strategies led to exceptional sales growth. Their understanding of the local market is phenomenal. The team is professional and results-driven."
+                        </p>
+                        <div class="border-t border-gray-700/50 pt-3">
+                            <p class="font-semibold accent-blue">- Ammar Khan, Marketing Director</p>
+                            <p class="text-sm text-gray-400">Tech Power Pakistan</p>
+                        </div>
+                    </div>
 
-                <!-- Client 4 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.3s;">
-                    <img class="h-16 client-logo"
-                         src="https://images.seeklogo.com/logo-png/37/1/bankislami-pakistan-limited-logo-png_seeklogo-377071.png"
-                         alt="Islamabad Bank Logo"
-                         onerror="this.onerror=null;this.src='https://images.seeklogo.com/logo-png/37/1/bankislami-pakistan-limited-logo-png_seeklogo-377071.png'">
-                </div>
+                    <!-- Review 2: Brand Manager -->
+                    <div class="testimonial-card p-6 rounded-xl dark-card shadow-xl transition duration-500 hover:shadow-2xl">
+                        <i class="fas fa-quote-left text-2xl text-blue-400 mb-4 accent-blue"></i>
+                        <p class="italic text-gray-300 mb-4 text-lg">
+                            "The launch of our new product on social media was a massive success. Their creative videos generated huge nationwide traction across Pakistan."
+                        </p>
+                        <div class="border-t border-gray-700/50 pt-3">
+                            <p class="font-semibold accent-blue">- Ayesha Rehman, Brand Manager</p>
+                            <p class="text-sm text-gray-400">Zaika Foods</p>
+                        </div>
+                    </div>
 
-                <!-- Client 5 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.4s;">
-                    <img class="h-16 client-logo"
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlA7Iw9vezzynEY1JdRXPbCToUtphpoNrLZQ&s"
-                         alt="Peshawar Energy Logo"
-                         onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlA7Iw9vezzynEY1JdRXPbCToUtphpoNrLZQ&s'">
-                </div>
-
-                <!-- Client 6 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.5s;">
-                    <img class="h-16 client-logo"
-                         src="https://placehold.co/150x60/808080/ffffff?text=Quetta+Pharma"
-                         alt="Quetta Pharma Logo"
-                         onerror="this.onerror=null;this.src='https://placehold.co/150x60/808080/ffffff?text=Client+6'">
-                </div>
-
-                <!-- Client 7 -->
-                <div class="p-4 flex justify-center animate-on-scroll" style="animation-delay: 0.6s;">
-                    <img class="h-16 client-logo"
-                         src="https://placehold.co/150x60/808080/ffffff?text=Multan+Exports"
-                         alt="Multan Exports Logo"
-                         onerror="this.onerror=null;this.src='https://placehold.co/150x60/808080/ffffff?text=Client+7'">
-                </div>
-
-                <!-- Client 8 (Hidden on Mobile, visible on Tablet/Desktop) -->
-                <div class="p-4 hidden sm:flex justify-center animate-on-scroll" style="animation-delay: 0.7s;">
-                    <img class="h-16 client-logo"
-                         src="https://placehold.co/150x60/808080/ffffff?text=Faisalabad+Motors"
-                         alt="Faisalabad Motors Logo"
-                         onerror="this.onerror=null;this.src='https://placehold.co/150x60/808080/ffffff?text=Client+8'">
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- 3. Section: Client Testimonials -->
-        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 md:p-12 transition-colors duration-500 border-t-8 border-yellow-500">
-            <h2 class="text-2xl md:text-4xl font-bold text-center text-yellow-600 dark:text-yellow-400 mb-12 opacity-0 animate-on-scroll">
-                What Our Clients Say
-            </h2>
-
-            <!-- Testimonials Grid (Responsive: 1 column on mobile, 2 on desktop) -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-                <!-- Testimonial 1 -->
-                <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md animate-on-scroll" style="animation-delay: 0s;">
-                    <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
-                        "Pak Ad Agency completely transformed our brand's social media presence. Their AI video generation services helped us launch three campaigns in the time it usually takes for one. Truly professional and results-driven."
-                    </p>
-                    <div class="flex items-center">
-                        <img class="w-12 h-12 rounded-full mr-4"
-                             src="https://placehold.co/150x150/0000FF/FFFFFF?text=A"
-                             alt="Testimonial Avatar"
-                             onerror="this.onerror=null;this.src='https://placehold.co/150x150/0000FF/FFFFFF?text=A'">
-                        <div>
-                            <p class="font-bold text-blue-600 dark:text-blue-400">Ahmed Khan</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">CEO, Tech Innovators</p>
+                    <!-- Review 3: CEO -->
+                    <div class="testimonial-card p-6 rounded-xl dark-card shadow-xl transition duration-500 hover:shadow-2xl">
+                        <i class="fas fa-quote-left text-2xl text-blue-400 mb-4 accent-blue"></i>
+                        <p class="italic text-gray-300 mb-4 text-lg">
+                            "Their 360-degree digital solution for our real estate project was top-notch. Their planning and execution helped us achieve our goals ahead of schedule."
+                        </p>
+                        <div class="border-t border-gray-700/50 pt-3">
+                            <p class="font-semibold accent-blue">- Javed Malik, CEO</p>
+                            <p class="text-sm text-gray-400">Mehran Properties</p>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Testimonial 2 -->
-                <div class="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-md animate-on-scroll" style="animation-delay: 0.2s;">
-                    <p class="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
-                        "The level of detail in their graphic design and branding kit was exceptional. They captured the traditional essence of our food business while giving us a modern, clean look for the digital space. Highly recommended for quality."
-                    </p>
-                    <div class="flex items-center">
-                        <img class="w-12 h-12 rounded-full mr-4"
-                             src="https://placehold.co/150x150/FF0000/FFFFFF?text=B"
-                             alt="Testimonial Avatar"
-                             onerror="this.onerror=null;this.src='https://placehold.co/150x150/FF0000/FFFFFF?text=B'">
-                        <div>
-                            <p class="font-bold text-blue-600 dark:text-blue-400">Sana Tariq</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Marketing Head, Karachi Foods</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- 3. Call to Action (CTA) -->
+            <section class="text-center p-10 rounded-xl max-w-4xl mx-auto dark-card shadow-2xl">
+                <h3 class="text-3xl font-bold text-gray-100 mb-4">
+                    Ready to Join Our Success Stories?
+                </h3>
+                <p class="text-lg text-gray-400 mb-6">
+                    We are eager to add your name to this list. Let's start the conversation about your next big project today.
+                </p>
+                <a href="#" class="inline-block px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-full transition duration-300 shadow-md transform hover:scale-105">
+                    Contact Our Strategy Team
+                </a>
+            </section>
 
-            </div>
-        </section>
+        </div>
+    </main>
 
-        <!-- Footer Call to Action -->
-        <footer class="mt-16 text-center">
-            <h3 class="text-3xl font-bold mb-4 text-gray-700 dark:text-gray-300">Ready to Become Our Next Success Story?</h3>
-            <a href="#" class="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 text-lg">
-                Get in Touch
-            </a>
-        </footer>
-    </div>
-    <!-- End Main Content Area -->
-    <div id="footer-placeholder"></div>
-
-    <script src="assets/js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fetch and insert the header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                    // Now that the header is loaded, initialize its functionality
-                    initializeHeader();
-                });
-
-            // Fetch and insert the footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                });
-        });
-    </script>
+    <!-- Footer - Fixed Dark Theme -->
+    <footer class="py-6 mt-12 navbar-dark">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2024 Pak Ad Agency. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
