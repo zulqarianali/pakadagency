@@ -117,37 +117,64 @@
         });
     </script>
 
-    <!-- Nav Bar (Using dynamic classes) -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            
-            <!-- Logo/Brand Name -->
-            <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
-                Pak Ad Agency
-            </div>
-<!-- Desktop Links -->
-<div class="hidden md:flex space-x-8 text-white dark:text-white"> <!-- یہاں تبدیلی ہوئی ہے -->
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
-    <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
-    <!-- Contact Link is Active/Highlighted -->
-    <a href="#" class="text-accent-blue dark:text-white font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-white">Contact</a> <!-- یہاں بھی تبدیلی ہوئی ہے -->
-</div>
+   <!-- Nav Bar (Using dynamic classes) -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Logo/Brand Name -->
+        <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
+            Pak Ad Agency
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex space-x-8 text-white dark:text-white">
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
+            <!-- Contact Link is Active/Highlighted -->
+            <a href="#" class="text-accent-blue dark:text-white font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-white">Contact</a>
+        </div>
+
+        <!-- Right Side: Theme Toggle + Mobile Menu Button -->
+        <div class="flex items-center space-x-4">
             <!-- Dark/Light Mode Toggle Button -->
-            <!-- The icon button text now uses the brighter dark mode text color as well -->
             <button id="theme-toggle" class="text-gray-700 dark:text-blue-300 hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
                 <i id="theme-icon" class="text-xl fas"></i>
             </button>
-            
-            <!-- Mobile Menu Button (Placeholder) -->
-            <button class="md:hidden text-gray-700 dark:text-blue-300 focus:outline-none">
-                <!-- <i class="fas fa-bars text-xl"></i> -->
+
+            <!-- ✅ Mobile Menu Button (UNCOMMENTED) -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-blue-300 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
-    </nav>
+    </div>
+
+    <!-- ✅ Mobile Menu (ADDED - was missing) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-dark-secondary dark:bg-light-secondary py-4 flex flex-col space-y-2 z-20">
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Home</a>
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Portfolio</a>
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Pricing</a>
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Services</a>
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">About</a>
+        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Clients</a>
+        <a href="#" class="px-6 py-2 text-accent-blue font-semibold">Contact</a>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
+</nav>
+
     <!-- End Nav Bar -->
 
     <!-- Main Content Area -->
