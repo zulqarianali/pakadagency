@@ -71,7 +71,7 @@
             const icon = document.getElementById('theme-icon');
             if (!icon) return;
             const isDark = document.documentElement.classList.contains('dark');
-            icon.className = 'text-xl fas ' + (isDark ? 'fa-moon' : 'fa-sun');
+            icon.className = 'text-xl fas ' + (isDark ? 'fa-moon' : '');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -92,7 +92,7 @@
         });
     </script>
 
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-dark">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
                 Pak Ad Agency
