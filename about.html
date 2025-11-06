@@ -1,176 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Pak Ad Agency</title>
-    <!-- Load Tailwind CSS -->
+    <title>About Us - Pak Ad Agency</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Font Awesome for Icons (Moon/Sun) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Base styles for Navbar shadow (used in both modes) */
+        .navbar-base {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        /* Fixed colors for the Dark Navbar (matching screenshot) */
+        .navbar-dark { background-color: #0D1B2A; }
+        /* Fixed colors for the Light Navbar */
+        .navbar-light { background-color: #F3F4F6; }
+
+        /* Smooth transition for theme change */
+        .transition-colors { transition: background-color 0.5s, color 0.5s; }
+    </style>
     <script>
-        // FOUC Prevention
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
+        tailwind.config = {
+            darkMode: 'class', // Use 'dark' class on the HTML tag
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-blue': '#3B82F6', // Used for links and icons in Dark mode
+                        // Custom Dark Mode Colors (Matching Original Design)
+                        'dark-primary': '#040C1A', 
+                        'dark-secondary': '#0D1B2A',
+                        'dark-card': '#1A2E44',
+                        // Custom Light Mode Colors
+                        'light-primary': '#FFFFFF',
+                        'light-secondary': '#F3F4F6',
+                        'light-card-bg': '#E5E7EB',
+                        'light-text-main': '#1F2937',
+                        'light-accent-blue': '#1D4ED8', // Darker blue for light mode
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
-
-    <div id="header-placeholder"></div>
-
-    <!-- 1. Hero/Story Section -->
-    <section class="py-16 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-5xl md:text-6xl font-extrabold text-[#006A4E] dark:text-cyan-400 mb-6 tracking-tight opacity-0" data-animate="slide-in-down">
-                Our Story: Fueling Digital Success.
-            </h2>
-            <div class="space-y-6 text-lg text-gray-600 dark:text-gray-400">
-                <p class="opacity-0" data-animate="fade-in-up" style='animation-delay: 0.5s;'>
-                    We are a creative agency specializing in **high-impact video advertising** and comprehensive digital branding. Our mission is to transform your business vision into compelling visual content that drives measurable results and maximizes your online presence.
-                </p>
-                <p class="opacity-0" data-animate="fade-in-up" style='animation-delay: 0.8s;'>
-                    From **AI-powered efficiency** to Ultra-Premium, real-person video production, we offer scalable solutions designed to fit every budget and quality standard. We believe every brand deserves a world-class visual identity.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. Why Choose Us / Core Values Section -->
-    <section class="py-16 md:py-24 bg-[#f7f9fb] dark:bg-gray-900 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-4xl font-bold text-center text-[#1e293b] dark:text-gray-100 mb-12">Our Core Values</h3>
-            <div class="grid md:grid-cols-3 gap-8">
-
-                <!-- Value 1: Quality First -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 opacity-0" data-animate="zoom-in" style='animation-delay: 0s;'>
-                    <div class="text-[#FF9900] dark:text-cyan-400 mb-4">
-                        <i data-lucide="award" class="w-10 h-10"></i>
-                    </div>
-                    <h4 class="text-2xl font-semibold mb-3 text-[#006A4E] dark:text-gray-100">Quality First</h4>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        We prioritize ultra-high quality across all deliverables, ensuring every pixel, script, and sound byte—whether AI-generated or human-produced—meets the highest industry benchmarks.
-                    </p>
-                </div>
-
-                <!-- Value 2: Transparent Pricing -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 opacity-0" data-animate="zoom-in" style='animation-delay: 0.2s;'>
-                    <div class="text-[#FF9900] dark:text-cyan-400 mb-4">
-                        <i data-lucide="tag" class="w-10 h-10"></i>
-                    </div>
-                    <h4 class="text-2xl font-semibold mb-3 text-[#006A4E] dark:text-gray-100">Transparent Pricing</h4>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Our pricing is simple and direct, clearly outlining the value you receive within our defined tiers (e.g., 2k to 5k packages), ensuring budgeting is predictable and hassle-free.
-                    </p>
-                </div>
-
-                <!-- Value 3: Innovative Approach -->
-                <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 opacity-0" data-animate="zoom-in" style='animation-delay: 0.4s;'>
-                    <div class="text-[#FF9900] dark:text-cyan-400 mb-4">
-                        <i data-lucide="lightbulb" class="w-10 h-10"></i>
-                    </div>
-                    <h4 class="text-2xl font-semibold mb-3 text-[#006A4E] dark:text-gray-100">Innovative Approach</h4>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        We seamlessly integrate modern AI tools for efficiency with deep human creativity, crafting solutions that are cutting-edge, effective, and uniquely tailored to your brand.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Team Section -->
-    <section class="py-16 md:py-24 bg-white dark:bg-gray-950 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-4xl font-bold text-center text-[#1e293b] dark:text-gray-100 mb-12 opacity-0" data-animate="fade-in">
-                Meet Our Creative Experts
-            </h3>
-            <div class="grid md:grid-cols-4 gap-8">
-
-                <!-- Team Member 1 -->
-                <div class="text-center opacity-0" data-animate="fade-in-up" style='animation-delay: 0s;'>
-                    <div class="w-32 h-32 mx-auto mb-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-xl">
-                        <!-- Custom Shape Mask Applied Here -->
-                        <img src="https://i.pinimg.com/736x/33/8a/8c/338a8cdc8400d6ae/f0eafa56dfde38f.jpg" alt="Creative Director"
-                             class="w-full h-full object-cover clip-custom-blob" onerror="this.onerror=null; this.src='https://i.pinimg.com/736x/33/8a/8c/338a8cdc8400d6ae/f0eafa56dfde38f.jpg'">
-                    </div>
-                    <h4 class="text-xl font-semibold text-[#006A4E] dark:text-cyan-400">Zulqarnain Ali</h4>
-                    <p class="text-gray-500 dark:text-gray-400">Creative Director</p>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="text-center opacity-0" data-animate="fade-in-up" style='animation-delay: 0.2s;'>
-                    <div class="w-32 h-32 mx-auto mb-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-xl">
-                        <!-- Custom Shape Mask Applied Here -->
-                        <img src="https://img.freepik.com/free-photo/smiling-female-student-doing-homework-desk_1262-5768.jpg?semt=ais_hybrid&w=740&q=80" alt="Lead Editor"
-                             class="w-full h-full object-cover clip-custom-blob" onerror="this.onerror=null; this.src='https://img.freepik.com/free-photo/smiling-female-student-doing-homework-desk_1262-5768.jpg?semt=ais_hybrid&w=740&q=80'">
-                    </div>
-                    <h4 class="text-xl font-semibold text-[#006A4E] dark:text-cyan-400">Zainab Ali</h4>
-                    <p class="text-gray-500 dark:text-gray-400">Lead Video Editor</p>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="text-center opacity-0" data-animate="fade-in-up" style='animation-delay: 0.4s;'>
-                    <div class="w-32 h-32 mx-auto mb-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-xl">
-                        <!-- Custom Shape Mask Applied Here -->
-                        <img src="https://placehold.co/128x128/006A4E/FFFFFF?text=GD" alt="Graphic Designer"
-                             class="w-full h-full object-cover clip-custom-blob" onerror="this.onerror=null; this.src='https://placehold.co/128x128/006A4E/FFFFFF?text=GD'">
-                    </div>
-                    <h4 class="text-xl font-semibold text-[#006A4E] dark:text-cyan-400">Faisal Iqbal</h4>
-                    <p class="text-gray-500 dark:text-gray-400">Senior Graphic Designer</p>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div class="text-center opacity-0" data-animate="fade-in-up" style='animation-delay: 0.6s;'>
-                    <div class="w-32 h-32 mx-auto mb-4 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-xl">
-                        <!-- Custom Shape Mask Applied Here -->
-                        <img src="https://placehold.co/128x128/FF9900/FFFFFF?text=SM" alt="Social Media Manager"
-                             class="w-full h-full object-cover clip-custom-blob" onerror="this.onerror=null; this.src='https://placehold.co/128x128/FF9900/FFFFFF?text=SM'">
-                    </div>
-                    <h4 class="text-xl font-semibold text-[#006A4E] dark:text-cyan-400">Aisha Mehmood</h4>
-                    <p class="text-gray-500 dark:text-gray-400">Social Media Manager</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. CTA Bar -->
-    <div class="bg-[#006A4E] dark:bg-gray-900 py-12 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <h4 class="text-3xl font-bold text-white mb-4 md:mb-0">
-                Ready to collaborate?
-            </h4>
-            <a href="services.html" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-[#006A4E] dark:text-gray-900 bg-[#FF9900] hover:bg-yellow-500 dark:bg-cyan-400 dark:hover:bg-cyan-300 transition-colors duration-200 shadow-lg">
-                View Our Services
-                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
-            </a>
-        </div>
-    </div>
-
-    <div id="footer-placeholder"></div>
-
-    <script src="assets/js/script.js"></script>
+<!-- Initializing the theme classes on the body -->
+<body class="transition-colors bg-dark-primary text-gray-200 dark:bg-light-primary dark:text-light-text-main">
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Fetch and insert the header
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-placeholder').innerHTML = data;
-                    // Now that the header is loaded, initialize its functionality
-                    initializeHeader();
-                });
+        // --- Theme Initialization Script (Runs immediately) ---
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            
+            // New Requirement: Default to Light mode if no preference is saved.
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                // Default to light mode (new requirement)
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light'); // Set the default for future visits
+            }
+        }
+        initializeTheme();
 
-            // Fetch and insert the footer
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-placeholder').innerHTML = data;
-                });
+        // --- Theme Toggle Logic ---
+        function toggleTheme() {
+            const htmlElement = document.documentElement;
+            const isCurrentlyDark = htmlElement.classList.contains('dark');
+            const themeIcon = document.getElementById('theme-icon');
+
+            if (isCurrentlyDark) {
+                // Switch to light mode
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            } else {
+                // Switch to dark mode
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                }
+            }
+        }
+        
+        // Set up the initial icon and button listener once the DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+             const themeButton = document.getElementById('theme-toggle');
+             const themeIcon = document.getElementById('theme-icon');
+
+             if (themeButton) {
+                themeButton.addEventListener('click', toggleTheme);
+             }
+        
+             // Set initial icon state based on the theme class set during initialization
+             if (themeIcon) {
+                 if (document.documentElement.classList.contains('dark')) {
+                     themeIcon.classList.add('fa-moon');
+                 } else {
+                     themeIcon.classList.add('fa-sun');
+                 }
+             }
         });
+    </script>
+
+    <!-- Nav Bar (Using dynamic classes) -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo/Brand Name -->
+            <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
+                Pak Ad Agency
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex space-x-8 text-gray-200 dark:text-gray-800">
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+                <a href="#" class="text-accent-blue dark:text-light-accent-blue font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-light-accent-blue">About</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Contact</a>
+            </div>
+
+            <!-- Dark/Light Mode Toggle Button -->
+            <button id="theme-toggle" class="text-gray-200 dark:text-gray-700 hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
+                <i id="theme-icon" class="text-xl fas"></i>
+            </button>
+            
+            <!-- Mobile Menu Button (Placeholder) -->
+            <button class="md:hidden text-gray-200 dark:text-gray-700 focus:outline-none">
+                <!-- <i class="fas fa-bars text-xl"></i> -->
+            </button>
+        </div>
+    </nav>
+    <!-- End Nav Bar -->
+
+    <!-- Main Content Area -->
+    <main class="pt-24 pb-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- About Hero Section -->
+            <section class="text-center mb-16 pt-8">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-blue-400 dark:text-light-accent-blue mb-4">
+                    Our Story and Vision
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 dark:text-gray-600 max-w-4xl mx-auto mb-8">
+                    Pak Ad Agency is a **synergy of creativity, technology, and results-driven marketing**. We help elevate your business to new heights in the digital world.
+                </p>
+            </section>
+
+            <!-- Mission and Values -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Mission -->
+                <div class="p-8 rounded-xl shadow-xl transition duration-500 bg-dark-card dark:bg-light-secondary hover:shadow-2xl dark:shadow-md">
+                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-4 flex items-center">
+                        <i class="fas fa-bullseye mr-3"></i> Our Mission
+                    </h2>
+                    <p class="text-lg text-gray-300 dark:text-gray-700">
+                        Our goal is to provide businesses of all sizes with **cutting-edge video advertisements and creative design solutions**. We utilize the best of AI and human expertise to effectively deliver your brand's message to the audience in the shortest possible time.
+                    </p>
+                </div>
+                <!-- Values -->
+                <div class="p-8 rounded-xl shadow-xl transition duration-500 bg-dark-card dark:bg-light-secondary hover:shadow-2xl dark:shadow-md">
+                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-4 flex items-center">
+                        <i class="fas fa-medal mr-3"></i> Our Values
+                    </h2>
+                    <p class="text-lg text-gray-300 dark:text-gray-700">
+                        **Transparency, quality, innovation, and client success** are our core principles. We handle every project with dedication and professionalism to ensure you achieve your marketing goals.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Services Overview Section -->
+            <section class="mb-16">
+                <h2 class="text-4xl font-bold text-center text-blue-400 dark:text-light-accent-blue mb-10">
+                    Our Key Services
+                </h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card: AI Video Ads -->
+                    <div class="p-6 rounded-xl border border-gray-700 dark:border-gray-300 hover:border-accent-blue transition duration-300 bg-dark-secondary dark:bg-light-primary dark:shadow-md">
+                        <i class="fas fa-robot text-3xl text-blue-400 dark:text-light-accent-blue mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-gray-100 dark:text-light-text-main">AI Video Ads</h3>
+                        <p class="text-gray-400 dark:text-gray-600">Utilizing advanced Artificial Intelligence (AI) technology to create fast, affordable, and high-quality advertisements.</p>
+                    </div>
+                    <!-- Service Card: Commercial & Short Video Ads -->
+                    <div class="p-6 rounded-xl border border-gray-700 dark:border-gray-300 hover:border-accent-blue transition duration-300 bg-dark-secondary dark:bg-light-primary dark:shadow-md">
+                        <i class="fas fa-video text-3xl text-blue-400 dark:text-light-accent-blue mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-gray-100 dark:text-light-text-main">Commercial & Short Videos</h3>
+                        <p class="text-gray-400 dark:text-gray-600">From detailed commercial advertisements to short, engaging videos for platforms like TikTok and Reels.</p>
+                    </div>
+                    <!-- Service Card: Graphic Designing -->
+                    <div class="p-6 rounded-xl border border-gray-700 dark:border-gray-300 hover:border-accent-blue transition duration-300 bg-dark-secondary dark:bg-light-primary dark:shadow-md">
+                        <i class="fas fa-paint-brush text-3xl text-blue-400 dark:text-light-accent-blue mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-gray-100 dark:text-light-text-main">Graphic Designing</h3>
+                        <p class="text-gray-400 dark:text-gray-600">Captivating visual design for logos, comprehensive branding kits, social media posts, and website assets.</p>
+                    </div>
+                    <!-- Service Card: Video Editing -->
+                    <div class="p-6 rounded-xl border border-gray-700 dark:border-gray-300 hover:border-accent-blue transition duration-300 bg-dark-secondary dark:bg-light-primary dark:shadow-md">
+                        <i class="fas fa-cut text-3xl text-blue-400 dark:text-light-accent-blue mb-4"></i>
+                        <h3 class="text-xl font-bold mb-3 text-gray-100 dark:text-light-text-main">Video Editing Services</h3>
+                        <p class="text-gray-400 dark:text-gray-600">Transforming raw footage into a stunning, professional video, including color correction and advanced sound design.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Our Team Section -->
+            <section class="mb-16">
+                <h2 class="text-4xl font-bold text-center text-blue-400 dark:text-light-accent-blue mb-10">
+                    Meet Our Core Team
+                </h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    
+                    <!-- Team Member 1: Client Manager (Aisha Khan) -->
+                    <div class="bg-dark-secondary dark:bg-light-secondary p-6 rounded-xl text-center border border-gray-700 dark:border-gray-300 shadow-lg hover:shadow-xl transition duration-300">
+                        <!-- Placeholder for Photo: Initials CM -->
+                        <img src="https://placehold.co/120x120/1A2E44/E2E8F0?text=CM" alt="Client Manager" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-accent-blue dark:border-light-accent-blue">
+                        <h3 class="text-xl font-bold mb-1 text-gray-100 dark:text-light-text-main">Aisha Khan</h3>
+                        <p class="text-accent-blue dark:text-light-accent-blue font-semibold mb-2">Client Manager</p>
+                        <p class="text-sm text-gray-400 dark:text-gray-700">Client Relationship Management, Project Coordination, Strategic Planning.</p>
+                    </div>
+                    
+                    <!-- Team Member 2: Lead Video Editor (Zain Ali) -->
+                    <div class="bg-dark-secondary dark:bg-light-secondary p-6 rounded-xl text-center border border-gray-700 dark:border-gray-300 shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/120x120/1A2E44/E2E8F0?text=VE" alt="Video Editor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-accent-blue dark:border-light-accent-blue">
+                        <h3 class="text-xl font-bold mb-1 text-gray-100 dark:text-light-text-main">Zain Ali</h3>
+                        <p class="text-accent-blue dark:text-light-accent-blue font-semibold mb-2">Lead Video Editor</p>
+                        <p class="text-sm text-gray-400 dark:text-gray-700">Post-Production, Color Grading, Sound Design, AI Video Integration.</p>
+                    </div>
+
+                    <!-- Team Member 3: Creative Script Writer (Sara Butt) -->
+                    <div class="bg-dark-secondary dark:bg-light-secondary p-6 rounded-xl text-center border border-gray-700 dark:border-gray-300 shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/120x120/1A2E44/E2E8F0?text=SW" alt="Script Writer" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-accent-blue dark:border-light-accent-blue">
+                        <h3 class="text-xl font-bold mb-1 text-gray-100 dark:text-light-text-main">Sara Butt</h3>
+                        <p class="text-accent-blue dark:text-light-accent-blue font-semibold mb-2">Creative Script Writer</p>
+                        <p class="text-sm text-gray-400 dark:text-gray-700">Ad Copy, Storyboarding, Campaign Messaging, Creative Concepts.</p>
+                    </div>
+
+                    <!-- Team Member 4: Senior Graphic Designer (Farhan Mirza) -->
+                    <div class="bg-dark-secondary dark:bg-light-secondary p-6 rounded-xl text-center border border-gray-700 dark:border-gray-300 shadow-lg hover:shadow-xl transition duration-300">
+                        <img src="https://placehold.co/120x120/1A2E44/E2E8F0?text=GD" alt="Graphic Designer" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-accent-blue dark:border-light-accent-blue">
+                        <h3 class="text-xl font-bold mb-1 text-gray-100 dark:text-light-text-main">Farhan Mirza</h3>
+                        <p class="text-accent-blue dark:text-light-accent-blue font-semibold mb-2">Senior Graphic Designer</p>
+                        <p class="text-sm text-gray-400 dark:text-gray-700">Branding, UI/UX Concepts, Print Media, Social Graphics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="text-center p-10 rounded-xl max-w-3xl mx-auto shadow-2xl bg-dark-card dark:bg-light-secondary">
+                <h2 class="text-3xl font-bold text-gray-100 dark:text-light-text-main mb-4">
+                    Let's Work Together on Your Next Project!
+                </h2>
+                <p class="text-lg text-gray-300 dark:text-gray-700 mb-6">
+                    Contact us today to turn your creative ideas into digital reality.
+                </p>
+                <a href="#" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    Contact Us
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 mt-12 navbar-dark dark:navbar-light">
+        <div class="container mx-auto px-4 text-center text-gray-400 dark:text-gray-600">
+            <p>&copy; 2024 Pak Ad Agency. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle logic
+        const navLinks = document.querySelector('.md\\:flex');
+        const mobileMenuButton = document.querySelector('.md\\:hidden');
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                if (navLinks.classList.contains('hidden')) {
+                    // Hide logic
+                } else {
+                    // Show logic (simplified for demonstration)
+                    navLinks.classList.remove('space-x-8');
+                    navLinks.classList.add('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'w-full', 'py-4', 'space-y-2');
+                    
+                    // Apply theme-specific background to mobile menu
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const navBar = document.getElementById('navbar');
+                    
+                    // Remove fixed colors and add theme-dependent class
+                    navLinks.classList.remove('bg-[#0D1B2A]', 'bg-[#F3F4F6]'); 
+                    if (isDark) {
+                        navLinks.classList.add('bg-[#0D1B2A]');
+                    } else {
+                         navLinks.classList.add('bg-[#F3F4F6]');
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
