@@ -45,7 +45,16 @@
     </script>
 </head>
 <!-- Initializing the theme classes on the body -->
-<body class="transition-colors bg-dark-primary text-gray-200 dark:bg-light-primary dark:text-light-text-main">
+<!-- Background Image with Overlay -->
+<div class="fixed inset-0 -z-10">
+  <div class="absolute inset-0 bg-black/40"></div> <!-- Semi-transparent dark overlay -->
+  <img 
+    src="https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg" 
+    alt="" 
+    class="w-full h-full object-cover blur-sm"
+  >
+</div>    
+
     
     <script>
         // --- Theme Initialization Script (Runs immediately) ---
