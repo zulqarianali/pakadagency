@@ -129,15 +129,68 @@
       <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Contact</a>
 </div>
 
+
             <!-- Dark/Light Mode Toggle Button -->
             <button id="theme-toggle" class="text-gray-200 dark:text-gray-700 hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
                 <i id="theme-icon" class="text-xl fas"></i>
             </button>
-            
-            <!-- Mobile Menu Button (Placeholder) -->
-            <button class="md:hidden text-gray-200 dark:text-gray-700 focus:outline-none">
-                <!-- <i class="fas fa-bars text-xl"></i> -->
-            </button>
+            <!-- Nav Bar (Using dynamic classes) -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 navbar-base navbar-dark dark:navbar-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Logo/Brand Name -->
+        <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
+            Pak Ad Agency
+        </div>
+
+        <!-- Desktop Links -->
+        <div id="nav-links" class="hidden md:flex space-x-8 text-white dark:text-white">
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+            <a href="#" class="text-accent-blue dark:text-white font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-white">About</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
+            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Contact</a>
+        </div>
+
+        <!-- Dark/Light Mode Toggle Button -->
+        <button id="theme-toggle" class="text-gray-200 dark:text-gray-700 hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none ml-4">
+            <i id="theme-icon" class="text-xl fas"></i>
+        </button>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden text-gray-200 dark:text-gray-700 focus:outline-none ml-4">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown (Initially hidden) -->
+    <div id="mobile-menu" class="hidden md:hidden">
+        <div class="px-4 py-4 space-y-3 bg-[#0D1B2A] dark:bg-[#F3F4F6]">
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Home</a>
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Portfolio</a>
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Pricing</a>
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Services</a>
+            <a href="#" class="block text-accent-blue dark:text-gray-800 font-semibold rounded-lg px-3 py-2 border-l-4 border-accent-blue dark:border-light-accent-blue">About</a>
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Clients</a>
+            <a href="#" class="block text-white dark:text-gray-800 hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-3 py-2">Contact</a>
+        </div>
+    </div>
+</nav>
+           <script>
+    // Mobile menu toggle logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
         </div>
     </nav>
     <!-- End Nav Bar -->
