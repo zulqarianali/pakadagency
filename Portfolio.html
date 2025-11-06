@@ -40,186 +40,162 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Preserve Existing Design Aesthetics */
-        :root {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Light & Dark Mode Body Styles */
-        body {
-            background-color: #000000; /* black */
-            color: #f9fafb; /* gray-50 */
-        }
-        .dark body {
-            background-color: #0f172a; /* Darker background for dark mode */
-            color: #318fee; /* gray-50 */
-        }
-
-        /* Ensure smooth transitions with animations */
-        body, .transition-bg {
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Video Container Dark Mode Fix */
-        .ratio-9-16 {
-            background-color: #000000; /* Default to black for video player background */
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .dark .ratio-9-16, .ratio-9-16 {
-            background-color: #000000; /* Ensure it's black in both modes */
-        }
-
-        /* Custom CSS for 9:16 Aspect Ratio (Height is 16/9 = 1.777 times the width) */
-        .ratio-9-16 {
-            padding-top: 177.77%; /* (16 / 9) * 100% */
-            position: relative;
-            border-radius: 0.75rem;
-            overflow: hidden;
-        }
-
-        /* Ensures the video fills the aspect ratio box */
-        .ratio-9-16 video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background-color:transparent;
-        }
-
-        /* Style for active tab to maintain design consistency */
-        .tab-button {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .tab-button.active {
-            /* Applied new Accent Blue: #4A90E2 (Replacing cyan-500) */
-            background-color: #83f59f;
-            color: rgb(85, 38, 255);
-            box-shadow: 0 4px 6px -1px rgba(74, 144, 226, 0.4), 0 2px 4px -2px rgba(74, 144, 226, 0.3);
-            transform: translateY(-1px);
-        }
-
-        /* NEW: Glowing Border for Video Cards */
-        .glow-border {
-            position: relative;
-            border-radius: 0.75rem; /* rounded-xl */
-        }
-        .glow-border:before {
-            content: '';
-            position: absolute;
-            inset: -3px; /* Slightly outside the card */
-            /* Replaced Cyan/Teal gradient with solid Accent Blue */
-            background: #4A90E2;
-            border-radius: 1rem; /* Slightly larger than card radius */
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .group:hover .glow-border:before {
-            opacity: 1;
-            /* Replaced Cyan glow with Accent Blue glow */
-            box-shadow: 0 0 15px rgba(74, 144, 226, 0.7);
-        }
-
-        /* NEW: Soft Scale and Shadow on Video Hover */
-        .video-card-inner {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .group:hover .video-card-inner {
-            transform: scale(1.03);
-            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.3);
-        }
-        .dark .group:hover .video-card-inner {
-            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.5);
-        }
-
-        /* NEW: Video Title Ribbon */
-        .title-ribbon {
-            /* Replaced Cyan Gradient with solid Accent Blue */
-            background: rgba(74, 144, 226, 0.85);
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-        }
-
-        /* NEW: Motion Graphics Play Overlay */
-        .play-overlay {
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-        }
-        .card-hover-zoom:hover .play-overlay {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        .portfolio-image {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover-zoom:hover .portfolio-image {
-            transform: scale(1.05);
-        }
-
-        /* Header Smooth Transitions */
-        header {
-            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                        box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Enhanced Card Transitions */
-        .group {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Text and Icon Transitions */
-        h1, h2, h3, p, a, button, i, svg {
-            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* FOUC Prevention */
-        html.dark body { background-color: #0f172a; }
-    </style>
-    <script>
-        // FOUC Prevention Script
-        (function() {
-            const isDark = localStorage.getItem('theme') === 'dark' ||
-                           (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
-</head>
+   <style>
+    /* Preserve Existing Design Aesthetics */
+    :root {
+        font-family: 'Inter', sans-serif;
+    }
+    /* Light & Dark Mode Body Styles */
+    body {
+        background-color: #0D1B2A; /* ہلکا نیلا — سکرین شاٹ کے مطابق */
+        color: #ffffff; /* بالکل سفید — سکرین شاٹ کے مطابق */
+    }
+    .dark body {
+        background-color: #0D1B2A; /* ہلکا نیلا — سکرین شاٹ کے مطابق */
+        color: #ffffff; /* بالکل سفید — سکرین شاٹ کے مطابق */
+    }
+    /* Ensure smooth transitions with animations */
+    body, .transition-bg {
+        transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Video Container Dark Mode Fix */
+    .ratio-9-16 {
+        background-color: #000000; /* Default to black for video player background */
+        transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dark .ratio-9-16, .ratio-9-16 {
+        background-color: #000000; /* Ensure it's black in both modes */
+    }
+    /* Custom CSS for 9:16 Aspect Ratio (Height is 16/9 = 1.777 times the width) */
+    .ratio-9-16 {
+        padding-top: 177.77%; /* (16 / 9) * 100% */
+        position: relative;
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+    /* Ensures the video fills the aspect ratio box */
+    .ratio-9-16 video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-color:transparent;
+    }
+    /* Style for active tab to maintain design consistency */
+    .tab-button {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tab-button.active {
+        /* Applied new Accent Blue: #4A90E2 (Replacing cyan-500) */
+        background-color: #ddf0ff;
+        color: rgb(85, 38, 255);
+        box-shadow: 0 7px 8px -1px rgba(74, 144, 226, 0.4), 0 2px 4px -2px rgba(74, 144, 226, 0.3);
+        transform: translateY(-1px);
+    }
+    /* NEW: Glowing Border for Video Cards */
+    .glow-border {
+        position: relative;
+        border-radius: 0.75rem; /* rounded-xl */
+    }
+    .glow-border:before {
+        content: '';
+        position: absolute;
+        inset: -3px; /* Slightly outside the card */
+        /* Replaced Cyan/Teal gradient with solid Accent Blue */
+        background: #4A90E2;
+        border-radius: 1rem; /* Slightly larger than card radius */
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+    .group:hover .glow-border:before {
+        opacity: 1;
+        /* Replaced Cyan glow with Accent Blue glow */
+        box-shadow: 0 0 15px rgba(74, 144, 226, 0.7);
+    }
+    /* NEW: Soft Scale and Shadow on Video Hover */
+    .video-card-inner {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .group:hover .video-card-inner {
+        transform: scale(1.03);
+        box-shadow: 0 20px 40px rgba(74, 144, 226, 0.3);
+    }
+    .dark .group:hover .video-card-inner {
+        box-shadow: 0 20px 40px rgba(74, 144, 226, 0.5);
+    }
+    /* NEW: Video Title Ribbon */
+    .title-ribbon {
+        /* Replaced Cyan Gradient with solid Accent Blue */
+        background: rgba(74, 144, 226, 0.85);
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+    /* NEW: Motion Graphics Play Overlay */
+    .play-overlay {
+        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+    }
+    .card-hover-zoom:hover .play-overlay {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    .portfolio-image {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover-zoom:hover .portfolio-image {
+        transform: scale(1.05);
+    }
+    /* Header Smooth Transitions */
+    header {
+        transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Enhanced Card Transitions */
+    .group {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Text and Icon Transitions */
+    h1, h2, h3, p, a, button, i, svg {
+        transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* FOUC Prevention */
+    html.dark body { background-color: #0D1B2A; }
+</style>
 
 <body class="min-h-screen antialiased overflow-x-hidden">
 
     <!-- Header & Navigation -->
-    <header class="bg-white/90 dark shadow-md sticky top-0 z-20 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo: Uses Brand Green in Light Mode, Vibrant Cyan/Blue in Dark Mode -->
-            <h1 class="text-2xl font-bold text-[#006A4E] dark:text-[#4A90E2] transition-colors duration-300">Pak Ad Agency</h1>
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Home</a>
-                <a href="services.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Services</a>
-                <a href="pricing_page.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Pricing</a>
-                <a href="Portfolio.html" class="text-sm font-medium text-gray-900 dark:text-white border-b-2 border-[#FF9900] dark:border-[#4A90E2] transition-colors duration-300">Portfolio</a>
-                <a href="clients.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Clients</a>
-                <a href="contact.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-[#4A90E2] transition-colors duration-300">Contact</a>
-            </nav>
-            <div class="flex items-center space-x-2">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-                    <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
-                </button>
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="p-2 rounded-full text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700/50 md:hidden">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
-                </button>
-            </div>
+<header class="bg-[#0D1B2A] shadow-md sticky top-0 z-20 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <!-- Logo: Uses Brand Green in Light Mode, Vibrant Cyan/Blue in Dark Mode -->
+        <h1 class="text-2xl font-bold text-[#4A90E2] transition-colors duration-300">Pak Ad Agency</h1>
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="index.html" class="text-sm font-medium text-white hover:text-[#4A90E2] transition-colors duration-300">Home</a>
+            <a href="services.html" class="text-sm font-medium text-white hover:text-[#4A90E2] transition-colors duration-300">Services</a>
+            <a href="pricing_page.html" class="text-sm font-medium text-white hover:text-[#4A90E2] transition-colors duration-300">Pricing</a>
+            <a href="Portfolio.html" class="text-sm font-medium text-white border-b-2 border-[#4A90E2] transition-colors duration-300">Portfolio</a>
+            <a href="clients.html" class="text-sm font-medium text-white hover:text-[#4A90E2] transition-colors duration-300">Clients</a>
+            <a href="contact.html" class="text-sm font-medium text-white hover:text-[#4A90E2] transition-colors duration-300">Contact</a>
+        </nav>
+        <div class="flex items-center space-x-2">
+            <!-- Theme Toggle Button -->
+            <button id="theme-toggle" class="p-2 rounded-full text-white hover:bg-gray-700 transition-colors duration-300">
+                <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
+            </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="p-2 rounded-full text-white hover:bg-gray-700/50 md:hidden">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
         </div>
-    </header>
+    </div>
+</header>
+
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="fixed top-0 right-0 h-full w-64 bg-white dark:bg-[#101925] shadow-2xl z-[60] p-6 pt-20 flex-col space-y-4 md:hidden hidden">
@@ -1170,6 +1146,8 @@
     </script>
 </body>
 </html>
+
+
 
 </body>
 </html>
