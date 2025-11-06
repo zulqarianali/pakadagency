@@ -169,7 +169,21 @@
 </style>
 
 <body class="min-h-screen antialiased overflow-x-hidden">
-
+<!-- Fullscreen Background Video with Light Blue Overlay -->
+<div class="fixed inset-0 z-[-1] overflow-hidden">
+    <video 
+        class="absolute inset-0 w-full h-full object-cover"
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        poster="https://res.cloudinary.com/dpamzvcxg/video/upload/v1762334382/AGRICULTURE.FINAL....._r2emaz.jpg"
+        src="https://res.cloudinary.com/dpamzvcxg/video/upload/v1762334382/AGRICULTURE.FINAL....._r2emaz.mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Light Blue Overlay for Readability -->
+    <div class="absolute inset-0 bg-[#0D1B2A] opacity-80"></div>
+</div>
     <!-- Header & Navigation -->
 <header class="bg-[#0D1B2A] shadow-md sticky top-0 z-20 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
