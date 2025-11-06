@@ -1,3 +1,5 @@
+   <!-- <i class="fas fa-bars text-xl"></i> -->
+   
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,182 +8,140 @@
     <title>Contact Us - Pak Ad Agency</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons (Moon/Sun) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Base styles for Navbar shadow (used in both modes) */
         .navbar-base {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
         }
-        /* Fixed colors for the Dark Navbar (matching screenshot) */
-        .navbar-dark { background-color: #0D1B2A; }
-        /* Fixed colors for the Light Navbar */
+        .navbar-dark { background-color: #152c46; }
         .navbar-light { background-color: #F3F4F6; }
-
-        /* Smooth transition for theme change */
         .transition-colors { transition: background-color 0.5s, color 0.5s; }
     </style>
     <script>
         tailwind.config = {
-            darkMode: 'class', // Use 'dark' class on the HTML tag
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'accent-blue': '#3B82F6', // Used for links and icons in Dark mode
-                        // Custom Dark Mode Colors (Matching Original Design)
+                        'accent-blue': '#3B82F6',
                         'dark-primary': '#040C1A', 
                         'dark-secondary': '#0D1B2A',
                         'dark-card': '#1A2E44',
-                        // Custom Light Mode Colors
                         'light-primary': '#FFFFFF',
                         'light-secondary': '#F3F4F6',
                         'light-card-bg': '#E5E7EB',
                         'light-text-main': '#1F2937',
-                        'light-accent-blue': '#1D4ED8', // Darker blue for light mode
+                        'light-accent-blue': '#1D4ED8',
                     }
                 }
             }
         }
     </script>
 </head>
-<!-- Initializing the theme classes on the body -->
-<!-- Background Image with Overlay -->
-<div class="fixed inset-0 -z-10">
-  <div class="absolute inset-0 bg-black/40"></div> <!-- Semi-transparent dark overlay -->
-  <img 
-    src="https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg" 
-    alt="" 
-    class="w-full h-full object-cover blur-sm"
-  >
-</div>    
-
+<body class="transition-colors bg-dark-primary text-gray-200 dark:bg-light-primary dark:text-light-text-main">
     
     <script>
-        // --- Theme Initialization Script (Runs immediately) ---
         function initializeTheme() {
             const savedTheme = localStorage.getItem('theme');
-            
-            // Requirement: Default to Light mode if no preference is saved (White Mode on first load).
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
             } else {
-                // Default to light mode
                 document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light'); // Set the default for future visits
+                localStorage.setItem('theme', 'light');
             }
         }
         initializeTheme();
 
-        // --- Theme Toggle Logic ---
         function toggleTheme() {
             const htmlElement = document.documentElement;
             const isCurrentlyDark = htmlElement.classList.contains('dark');
-            const themeIcon = document.getElementById('theme-icon');
 
             if (isCurrentlyDark) {
-                // Switch to light mode
                 htmlElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                }
             } else {
-                // Switch to dark mode
                 htmlElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-                if (themeIcon) {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                }
             }
+            updateThemeIcon();
         }
-        
-        // Set up the initial icon and button listener once the DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-             const themeButton = document.getElementById('theme-toggle');
-             const themeIcon = document.getElementById('theme-icon');
 
-             if (themeButton) {
+        function updateThemeIcon() {
+            const icon = document.getElementById('theme-icon');
+            if (!icon) return;
+            const isDark = document.documentElement.classList.contains('dark');
+            icon.className = 'text-xl fas ' + (isDark ? 'fa-moon' : 'fa-sun');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeButton = document.getElementById('theme-toggle');
+            if (themeButton) {
                 themeButton.addEventListener('click', toggleTheme);
-             }
-        
-             // Set initial icon state based on the theme class set during initialization
-             if (themeIcon) {
-                 if (document.documentElement.classList.contains('dark')) {
-                     themeIcon.classList.add('fa-moon');
-                 } else {
-                     themeIcon.classList.add('fa-sun');
-                 }
-             }
+            }
+            updateThemeIcon();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
         });
     </script>
 
-   <!-- Nav Bar (Using dynamic classes) -->
-<nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
-        <!-- Logo/Brand Name -->
-        <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
-            Pak Ad Agency
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
+                Pak Ad Agency
+            </div>
+
+             <!-- Desktop/Mobile Links -->
+            <div id="mobile-menu-links" class="hidden md:flex space-x-8 text-white dark:text-light-text-main">
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+                <!-- Services Link is Active/Highlighted -->
+               <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
+                <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
+                 <a href="#" class="text-accent-blue dark:text-light-accent-blue font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-light-accent-blue">Contact</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text {#FFFFFF}dark:text {#FFFFFF}:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
+                    <i id="theme-icon" class="text-xl fas"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-blue-300 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
 
-        <!-- Desktop Links -->
-        <div class="hidden md:flex space-x-8 text-white dark:text-white">
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
-            <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
-            <!-- Contact Link is Active/Highlighted -->
-            <a href="#" class="text-accent-blue dark:text-white font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-white">Contact</a>
-        </div>
-
-        <!-- Right Side: Theme Toggle + Mobile Menu Button -->
-        <div class="flex items-center space-x-4">
-            <!-- Dark/Light Mode Toggle Button -->
-            <button id="theme-toggle" class="text-gray-700 dark:text-blue-300 hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
-                <i id="theme-icon" class="text-xl fas"></i>
-            </button>
-
-            <!-- ✅ Mobile Menu Button (UNCOMMENTED) -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-blue-300 focus:outline-none">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
-        </div>
+        <!-- Mobile Menu (Hidden by default on desktop) -->
+<div id="mobile-menu" class="hidden md:hidden bg-dark-secondary dark:bg-light-secondary absolute left-0 right-0 top-16 py-4 px-4 shadow-lg">
+    <div class="flex flex-col space-y-3 text-white"> <!-- ⬅️ یہاں تبدیلی کی گئی ہے -->
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Home</a>
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Portfolio</a>
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Pricing</a>
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Services</a>
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">About</a>
+        <a href="#" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Clients</a>
+        <a href="#" class="text-accent-blue dark:text-light-accent-blue font-semibold rounded-lg px-2 py-1">Contact</a>
     </div>
+</div>
 
-    <!-- ✅ Mobile Menu (ADDED - was missing) -->
-    <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-dark-secondary dark:bg-light-secondary py-4 flex flex-col space-y-2 z-20">
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Home</a>
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Portfolio</a>
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Pricing</a>
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Services</a>
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">About</a>
-        <a href="#" class="px-6 py-2 text-white hover:text-accent-blue transition">Clients</a>
-        <a href="#" class="px-6 py-2 text-accent-blue font-semibold">Contact</a>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-    });
-</script>
-</nav>
 
-    <!-- End Nav Bar -->
 
-    <!-- Main Content Area -->
+        </div>
+    </nav>
+
     <main class="pt-24 pb-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-
-            <!-- Contact Hero Section -->
             <section class="text-center mb-16 pt-8">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-blue-400 dark:text-light-accent-blue mb-4">
                     Get in Touch with Our Team
@@ -191,95 +151,57 @@
                 </p>
             </section>
 
-            <!-- Contact Form and Information Grid -->
             <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                
-                <!-- Left Column: Contact Form -->
                 <div class="p-8 rounded-xl shadow-2xl bg-dark-card dark:bg-light-secondary border border-gray-700 dark:border-gray-300">
-                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">
-                        Send Us a Message
-                    </h2>
-                    
+                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">Send Us a Message</h2>
                     <form action="#" method="POST" class="space-y-6">
-                        <!-- Name Field -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Full Name</label>
-                            <input type="text" id="name" name="name" placeholder="example Zulqarnain Ali" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 
-                                bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main 
-                                focus:ring-accent-blue focus:border-accent-blue transition duration-300" 
-                                required>
+                            <input type="text" id="name" name="name" placeholder="Your Name" 
+                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
-                        
-                        <!-- Email Field -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="pakadagency1gmail.com" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 
-                                bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main 
-                                focus:ring-accent-blue focus:border-accent-blue transition duration-300" 
-                                required>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" 
+                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
-
-                         <!-- Subject Field -->
                         <div>
                             <label for="subject" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Subject</label>
                             <input type="text" id="subject" name="subject" placeholder="Project Inquiry or Support" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 
-                                bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main 
-                                focus:ring-accent-blue focus:border-accent-blue transition duration-300" 
-                                required>
+                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
-                        
-                        <!-- Message Field -->
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Your Message</label>
                             <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 
-                                bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main 
-                                focus:ring-accent-blue focus:border-accent-blue transition duration-300" 
-                                required></textarea>
+                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required></textarea>
                         </div>
-                        
-                        <!-- Submit Button -->
                         <div class="text-center pt-4">
                             <button type="submit" 
-                                class="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-10 rounded-full 
-                                transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/50">
+                                class="w-full sm:w-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-10 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/50">
                                 Submit Inquiry
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <!-- Right Column: Contact Information -->
                 <div class="space-y-8 p-8 rounded-xl bg-dark-secondary dark:bg-light-card-bg border border-gray-700 dark:border-gray-300">
-                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">
-                        Our Information
-                    </h2>
-                    
-                    <!-- Email Card -->
+                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">Our Information</h2>
                     <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
                         <i class="fas fa-envelope text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
                         <div>
                             <h3 class="text-xl font-semibold text-gray-100 dark:text-light-text-main">Email Us</h3>
                             <p class="text-gray-400 dark:text-gray-700">For general inquiries and support.</p>
-                            <a href="pakadagency1gmail.com" class="text-accent-blue dark:text-light-accent-blue hover:underline">pakadagency1gmail.com
-.com</a>
+                            <a href="mailto:contact@pakadagency.com" class="text-accent-blue dark:text-light-accent-blue hover:underline">contact@pakadagency.com</a>
                         </div>
                     </div>
-
-                    <!-- Phone Card -->
                     <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
                         <i class="fas fa-phone text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
                         <div>
                             <h3 class="text-xl font-semibold text-gray-100 dark:text-light-text-main">Call Us</h3>
-                            <p class="text-gray-400 dark:text-gray-700">Available Monday to Friday, 9am - 6pm.</p>
-                            <a href="tel:+92923247107543" class="text-accent-blue dark:text-light-accent-blue hover:underline">+92923247107543</a>
+                            <p class="text-gray-400 dark:text-gray-700">Available Monday to Friday, 9am - 5pm.</p>
+                            <a href="tel:+923001234567" class="text-accent-blue dark:text-light-accent-blue hover:underline">+92 300 1234567</a>
                         </div>
                     </div>
-                    
-                    <!-- Location Card -->
                     <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
                         <i class="fas fa-map-marker-alt text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
                         <div>
@@ -291,134 +213,15 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </main>
 
-    <!-- Footer -->
-    <!-- FIX: Ensured text color has better contrast in light mode -->
     <footer class="py-6 mt-12 navbar-dark dark:navbar-light">
         <div class="container mx-auto px-4 text-center text-gray-400 dark:text-gray-600">
             <p>&copy; 2024 Pak Ad Agency. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Mobile menu toggle logic
-        const navLinks = document.querySelector('.md\\:flex');
-        const mobileMenuButton = document.querySelector('.md\\:hidden');
-
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', () => {
-                navLinks.classList.toggle('hidden');
-                if (navLinks.classList.contains('hidden')) {
-                    // Hide logic
-                } else {
-                    // Show logic (simplified for demonstration)
-                    navLinks.classList.remove('space-x-8');
-                    navLinks.classList.add('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'right-0', 'w-full', 'py-4', 'space-y-2');
-                    
-                    // Apply theme-specific background to mobile menu
-                    const isDark = document.documentElement.classList.contains('dark');
-                    
-                    // Remove fixed colors and add theme-dependent class
-                    navLinks.classList.remove('bg-[#0D1B2A]', 'bg-[#F3F4F6]'); 
-                    if (isDark) {
-                        navLinks.classList.add('bg-[#0D1B2A]');
-                    } else {
-                         navLinks.classList.add('bg-[#F3F4F6]');
-                    }
-                }
-            });
-        }
-    </script>
-
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Floating Button</title>
-    <style>
-        /* WhatsApp Floating Button Styles */
-        #whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-
-        #whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        #whatsapp-float:active {
-            transform: scale(0.95);
-        }
-
-        #whatsapp-icon {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* Ensure it doesn't interfere with other elements */
-        #whatsapp-float * {
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Your website content goes here -->
-
-    <!-- WhatsApp Floating Button -->
-    <a id="whatsapp-float" href="https://wa.me/923247107543" target="_blank" rel="noopener noreferrer">
-        <svg id="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
-
-    <script>
-        // This script ensures the button works properly and doesn't interfere with other website functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const whatsappButton = document.getElementById('whatsapp-float');
-            
-            // Add click event for analytics or additional functionality if needed
-            whatsappButton.addEventListener('click', function(e) {
-                // You can add tracking or other functionality here if needed
-                console.log('WhatsApp button clicked');
-            });
-        });
-    </script>
 </body>
 </html>
 
-
-</body>
-</html>
