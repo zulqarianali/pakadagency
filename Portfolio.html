@@ -40,11 +40,82 @@
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/mobile-nav.css">
    <style>
     /* Preserve Existing Design Aesthetics */
     :root {
         font-family: 'Inter', sans-serif;
+    }
+    
+    /* Mobile bottom navigation - hidden on desktop */
+    .mobile-bottom-nav {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #0d1e34;
+        z-index: 50;
+        padding: 0.5rem 0;
+        box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.06);
+    }
+    
+    .mobile-bottom-nav .nav-links {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+    
+    .mobile-bottom-nav .nav-link {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 0.25rem;
+        font-size: 0.75rem;
+        text-align: center;
+        border-radius: 0.375rem;
+        transition: all 0.2s ease;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .mobile-bottom-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #93c5fd;
+    }
+    
+    .mobile-bottom-nav .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #fbbf24;
+        font-weight: 600;
+    }
+    
+    /* Mobile navigation icon */
+    .mobile-bottom-nav .nav-icon {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    /* Show mobile bottom nav on mobile screens */
+    @media (max-width: 768px) {
+        .mobile-bottom-nav {
+            display: block !important;
+        }
+        
+        /* Add bottom padding to main content to avoid overlap with fixed nav */
+        main {
+            padding-bottom: 4rem;
+        }
+        
+        /* Hide desktop navigation on mobile - more specific selectors */
+        header,
+        .desktop-nav,
+        header nav,
+        .hidden.md\:flex {
+            display: none !important;
+        }
     }
     /* Light & Dark Mode Body Styles */
     body {
@@ -88,13 +159,42 @@
     /* Style for active tab to maintain design consistency */
     .tab-button {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
     }
+    
+    .tab-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+    
+    .tab-button:hover::before {
+        left: 100%;
+    }
+    
     .tab-button.active {
-        /* Applied new Accent Blue: #4A90E2 (Replacing cyan-500) */
-        background-color: #ddf0ff;
-        color: rgb(85, 38, 255);
-        box-shadow: 0 7px 8px -1px rgba(74, 144, 226, 0.4), 0 2px 4px -2px rgba(74, 144, 226, 0.3);
-        transform: translateY(-1px);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        transform: translateY(-2px);
+    }
+    
+    .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 3px;
+        background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        border-radius: 2px;
     }
     /* NEW: Glowing Border for Video Cards */
     .glow-border {
@@ -186,7 +286,7 @@
     <div class="absolute inset-0 bg-[#0D1B2A] opacity-80"></div>
 </div>
     <!-- Header & Navigation -->
-<header class="bg-[#0D1B2A] shadow-md sticky top-0 z-20 transition-colors duration-300">
+<header class="desktop-nav bg-[#0D1B2A] shadow-md sticky top-0 z-20 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <!-- Logo: Uses Brand Green in Light Mode, Vibrant Cyan/Blue in Dark Mode -->
         <h1 class="text-2xl font-bold text-[#4A90E2] transition-colors duration-300">Pak Ad Agency</h1>
@@ -233,23 +333,28 @@
             </p>
 
             <div class="flex justify-center mb-10">
-                <div class="flex flex-wrap space-x-2 bg-gray-200 dark:bg-[#1e293b] p-2 rounded-xl shadow-lg">
-                    <button class="tab-button active px-6 py-2 rounded-lg font-semibold" data-target="video-portfolio">
-                        Video & Shorts
+                <div class="inline-flex bg-gray-800 p-1 rounded-xl shadow-2xl flex-col sm:flex-row w-full sm:w-auto">
+                    <button class="tab-button active px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-lg transform transition-all duration-300 hover:scale-105 text-sm sm:text-base" data-target="video-portfolio">
+                        <i class="fas fa-video mr-1 sm:mr-2"></i>
+                        <span class="truncate">Video & Shorts</span>
                     </button>
-                    <button class="tab-button px-6 py-2 rounded-lg font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-[#334155] hover:text-[#4A90E2] dark:hover:text-[#60a5fa]" data-target="graphic-design"> Graphic Design
+                    <button class="tab-button px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-gray-300 hover:text-white hover:bg-gray-700 transition-all duration-300 hover:scale-105 text-sm sm:text-base" data-target="graphic-design">
+                        <i class="fas fa-palette mr-1 sm:mr-2"></i>
+                        <span class="truncate">Graphic Design</span>
                     </button>
-                    <button class="tab-button px-6 py-2 rounded-lg font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-[#334155] hover:text-[#4A90E2] dark:hover:text-[#60a5fa]" data-target="motion-graphics"> Motion Graphics
+                    <button class="tab-button px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-semibold text-gray-300 hover:text-white hover:bg-gray-700 transition-all duration-300 hover:scale-105 text-sm sm:text-base" data-target="motion-graphics">
+                        <i class="fas fa-film mr-1 sm:mr-2"></i>
+                        <span class="truncate">Motion Graphics</span>
                     </button>
                 </div>
             </div>
 
-            <div id="portfolio-container" class="bg-#498af5 dark:bg-[#1f2937] p-8 sm:p-12 rounded-xl shadow-2xl transition-bg">
+            <div id="portfolio-container" class="bg-gray-900 p-8 sm:p-12 rounded-xl shadow-2xl">
 
                 <div id="video-portfolio" class="portfolio-content active">
-                    <h2 class="text-3xl font-bold mb-6 border-b pb-3 border-gray-200 dark:border-gray-700">Ai Video Ads All categories</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-center text-white">AI Video Ads Portfolio</h2>
 
-                    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 
                         <div class="group bg-gray-100 dark:bg-gray-800 p-4 rounded-xl shadow-md transition duration-300 hover:shadow-lg transition-bg" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-once="true">
                             <div class="glow-border">
@@ -273,9 +378,11 @@
                             <div class="p-3 pt-4 flex justify-center">
                                 <a href="https://wa.me/923247107543?text=Hello%20Zulqarnain%2C%20I%20am%20interested%20in%20the%20project%3A%20E-Commerce%20Brand%20Video%20Ad"
                                    target="_blank"
-                                   class="inline-flex items-center px-4 py-2 bg-green-500 text-white font-semibold rounded-full shadow-md
-                                          hover:bg-green-600 transition duration-150 ease-in-out text-sm">
-                                    <i class="fab fa-whatsapp mr-2 text-base"></i> Message on WhatsApp
+                                   class="inline-flex items-center px-4 py-3 sm:px-6 sm:py-2 bg-green-500 text-white font-semibold rounded-full shadow-lg
+                                          hover:bg-green-600 transition duration-150 ease-in-out text-sm sm:text-base transform hover:scale-105">
+                                    <i class="fab fa-whatsapp mr-2 text-base sm:text-lg"></i> 
+                                    <span class="hidden sm:inline">Message on WhatsApp</span>
+                                    <span class="sm:hidden">WhatsApp</span>
                                 </a>
                             </div>
                         </div>
@@ -1068,88 +1175,6 @@
                     AOS.refresh();
                 });
             });
-
-            // Set initial active state for the Video tab (as it is the default 'active' class in HTML)
-            const initialTab = document.querySelector('.tab-button[data-target="video-portfolio"]');
-            if(initialTab) {
-                initialTab.classList.add('active');
-                initialTab.classList.remove('text-gray-700', 'dark:text-gray-300', 'hover:bg-gray-300', 'dark:hover:bg-[#24354D]', 'hover:text-[#4A90E2]');
-            }
-
-        });
-    </script>
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Floating Button</title>
-    <style>
-        /* WhatsApp Floating Button Styles */
-        #whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-
-        #whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        #whatsapp-float:active {
-            transform: scale(0.95);
-        }
-
-        #whatsapp-icon {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* Ensure it doesn't interfere with other elements */
-        #whatsapp-float * {
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Your website content goes here -->
-
-    <!-- WhatsApp Floating Button -->
-    <a id="whatsapp-float" href="https://wa.me/923247107543" target="_blank" rel="noopener noreferrer">
-        <svg id="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-    </a>
-
-    <script>
-        // This script ensures the button works properly and doesn't interfere with other website functionality
-        document.addEventListener('DOMContentLoaded', function() {
             const whatsappButton = document.getElementById('whatsapp-float');
             
             // Add click event for analytics or additional functionality if needed
@@ -1159,10 +1184,32 @@
             });
         });
     </script>
-</body>
-</html>
 
-
+    <!-- Mobile Bottom Navigation (hidden on desktop) -->
+    <nav class="mobile-bottom-nav">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home nav-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="Portfolio.html" class="nav-link active">
+                <i class="fas fa-briefcase nav-icon"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="about.html" class="nav-link">
+                <i class="fas fa-info-circle nav-icon"></i>
+                <span>About</span>
+            </a>
+            <a href="pricing_page.html" class="nav-link">
+                <i class="fas fa-dollar-sign nav-icon"></i>
+                <span>Price</span>
+            </a>
+            <a href="Contact.html" class="nav-link">
+                <i class="fas fa-phone nav-icon"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
 
 </body>
 </html>
