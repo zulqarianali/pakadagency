@@ -10,7 +10,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/mobile-nav.css">
     <style>
         .navbar-base {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
@@ -18,6 +17,82 @@
         .navbar-dark { background-color: #152c46; }
         .navbar-light { background-color: #F3F4F6; }
         .transition-colors { transition: background-color 0.5s, color 0.5s; }
+        
+        /* Mobile bottom navigation - hidden on desktop */
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: #152c46;
+            z-index: 50;
+            padding: 0.5rem 0;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        
+        .mobile-bottom-nav .nav-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        
+        .mobile-bottom-nav .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 0.25rem;
+            font-size: 0.75rem;
+            text-align: center;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .mobile-bottom-nav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #93c5fd;
+        }
+        
+        .mobile-bottom-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        
+        /* Mobile navigation icon */
+        .mobile-bottom-nav .nav-icon {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Show mobile bottom nav on mobile screens */
+        @media (max-width: 768px) {
+            .mobile-bottom-nav {
+                display: block !important;
+            }
+            
+            /* Add bottom padding to main content to avoid overlap with fixed nav */
+            main {
+                padding-bottom: 4rem;
+            }
+            
+            /* Hide desktop navigation on mobile - more specific selectors */
+            .desktop-nav,
+            nav:not(.mobile-bottom-nav),
+            #navbar {
+                display: none !important;
+            }
+        }
+        
+        /* Dark mode support for mobile nav */
+        .dark .mobile-bottom-nav {
+            background-color: #1e293b;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -40,47 +115,13 @@
         }
     </script>
 </head>
-<body class="transition-colors bg-dark-primary text-gray-200 dark:bg-light-primary dark:text-light-text-main">
+<body class="transition-colors bg-dark-primary text-gray-200">
     
     <script>
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            }
-        }
-        initializeTheme();
-
-        function toggleTheme() {
-            const htmlElement = document.documentElement;
-            const isCurrentlyDark = htmlElement.classList.contains('dark');
-
-            if (isCurrentlyDark) {
-                htmlElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                htmlElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-            updateThemeIcon();
-        }
-
-        function updateThemeIcon() {
-            const icon = document.getElementById('theme-icon');
-            if (!icon) return;
-            const isDark = document.documentElement.classList.contains('dark');
-            icon.className = 'text-xl fas ' + (isDark ? 'fa-moon' : '');
-        }
-
+        // Set dark mode by default
         document.addEventListener('DOMContentLoaded', () => {
-            const themeButton = document.getElementById('theme-toggle');
-            if (themeButton) {
-                themeButton.addEventListener('click', toggleTheme);
-            }
-            updateThemeIcon();
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
 
             // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -93,46 +134,46 @@
         });
     </script>
 
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-20 navbar-base navbar-dark dark:navbar-dark">
+    <nav id="navbar" class="desktop-nav fixed top-0 left-0 w-full z-20 navbar-base navbar-dark">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="text-2xl font-bold tracking-wider text-blue-400 dark:text-light-accent-blue">
+            <div class="text-2xl font-bold tracking-wider text-blue-400">
                 Pak Ad Agency
             </div>
 
              <!-- Desktop/Mobile Links -->
-            <div id="mobile-menu-links" class="hidden md:flex space-x-8 text-white dark:text-light-text-main">
-                <a href="index.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
-                <a href="Portfolio.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
-                <a href="pricing_page.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
+            <div id="mobile-menu-links" class="hidden md:flex space-x-8 text-white">
+                <a href="index.html" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Home</a>
+                <a href="Portfolio.html" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Portfolio</a>
+                <a href="pricing_page.html" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Pricing</a>
                 <!-- Services Link is Active/Highlighted -->
-               <a href="services.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
-                <a href="about.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
-                <a href="Clients.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
-                 <a href="Contact.html" class="text-accent-blue dark:text-light-accent-blue font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue dark:border-light-accent-blue">Contact</a>
+               <a href="#" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Services</a>
+                <a href="about.html" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">About</a>
+                <a href="Clients.html" class="hover:text-accent-blue transition duration-300 rounded-lg px-2 py-1">Clients</a>
+                 <a href="Contact.html" class="text-accent-blue font-semibold rounded-lg px-2 py-1 border-b-2 border-accent-blue">Contact</a>
             </div>
 
             <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="text {#FFFFFF}dark:text {#FFFFFF}:text-accent-blue dark:hover:text-light-accent-blue transition duration-300 focus:outline-none">
-                    <i id="theme-icon" class="text-xl fas"></i>
-                </button>
-                
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-blue-300 focus:outline-none">
+                <button id="mobile-menu-button" class="md:hidden text-gray-300 focus:outline-none">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu (Hidden by default on desktop) -->
-<div id="mobile-menu" class="hidden md:hidden bg-dark-secondary dark:bg-light-secondary absolute left-0 right-0 top-16 py-4 px-4 shadow-lg">
-    <div class="flex flex-col space-y-3 text-white"> <!-- ⬅️ یہاں تبدیلی کی گئی ہے -->
-        <a href="index.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Home</a>
-        <a href="Portfolio.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Portfolio</a>
-        <a href="pricing_page.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Pricing</a>
-        <a href="services.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Services</a>
-        <a href="about.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">About</a>
-        <a href="Clients.html" class="hover:text-accent-blue dark:hover:text-light-accent-blue transition rounded-lg px-2 py-1">Clients</a>
-        <a href="Contact.html" class="text-accent-blue dark:text-light-accent-blue font-semibold rounded-lg px-2 py-1">Contact</a>
+<div id="mobile-menu" class="hidden md:hidden bg-dark-secondary absolute left-0 right-0 top-16 py-4 px-4 shadow-lg">
+    <!-- Mobile Menu Header with Brand Name -->
+    <div class="text-2xl font-bold tracking-wider text-blue-400 mb-4 pb-2 border-b border-gray-600">
+        Pak Ad Agency
+    </div>
+    <div class="flex flex-col space-y-3 text-white">
+        <a href="index.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">Home</a>
+        <a href="Portfolio.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">Portfolio</a>
+        <a href="pricing_page.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">Pricing</a>
+        <a href="services.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">Services</a>
+        <a href="about.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">About</a>
+        <a href="Clients.html" class="hover:text-accent-blue transition rounded-lg px-2 py-1">Clients</a>
+        <a href="Contact.html" class="text-accent-blue font-semibold rounded-lg px-2 py-1">Contact</a>
     </div>
 </div>
 
@@ -144,37 +185,37 @@
     <main class="pt-24 pb-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <section class="text-center mb-16 pt-8">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-blue-400 dark:text-light-accent-blue mb-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-blue-400 mb-4">
                     Get in Touch with Our Team
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-8">
+                <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
                     Ready to start your next campaign? Fill out the form below or contact us directly.
                 </p>
             </section>
 
             <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="p-8 rounded-xl shadow-2xl bg-dark-card dark:bg-light-secondary border border-gray-700 dark:border-gray-300">
-                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">Send Us a Message</h2>
+                <div class="p-8 rounded-xl shadow-2xl bg-dark-card border border-gray-700">
+                    <h2 class="text-3xl font-bold text-blue-400 mb-6">Send Us a Message</h2>
                     <form action="#" method="POST" class="space-y-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Full Name</label>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="Your Name" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
+                                class="w-full p-3 rounded-lg border border-gray-600 bg-dark-secondary text-gray-100 focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Email Address</label>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
                             <input type="email" id="email" name="email" placeholder="you@example.com" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
+                                class="w-full p-3 rounded-lg border border-gray-600 bg-dark-secondary text-gray-100 focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Subject</label>
+                            <label for="subject" class="block text-sm font-medium text-gray-300 mb-1">Subject</label>
                             <input type="text" id="subject" name="subject" placeholder="Project Inquiry or Support" 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
+                                class="w-full p-3 rounded-lg border border-gray-600 bg-dark-secondary text-gray-100 focus:ring-accent-blue focus:border-accent-blue transition duration-300" required>
                         </div>
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-300 dark:text-gray-700 mb-1">Your Message</label>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
                             <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." 
-                                class="w-full p-3 rounded-lg border border-gray-600 dark:border-gray-400 bg-dark-secondary dark:bg-light-primary text-gray-100 dark:text-light-text-main focus:ring-accent-blue focus:border-accent-blue transition duration-300" required></textarea>
+                                class="w-full p-3 rounded-lg border border-gray-600 bg-dark-secondary text-gray-100 focus:ring-accent-blue focus:border-accent-blue transition duration-300" required></textarea>
                         </div>
                         <div class="text-center pt-4">
                             <button type="submit" 
@@ -185,30 +226,30 @@
                     </form>
                 </div>
 
-                <div class="space-y-8 p-8 rounded-xl bg-dark-secondary dark:bg-light-card-bg border border-gray-700 dark:border-gray-300">
-                    <h2 class="text-3xl font-bold text-blue-400 dark:text-light-accent-blue mb-6">Our Information</h2>
-                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
-                        <i class="fas fa-envelope text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
+                <div class="space-y-8 p-8 rounded-xl bg-dark-secondary border border-gray-700">
+                    <h2 class="text-3xl font-bold text-blue-400 mb-6">Our Information</h2>
+                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 shadow-md">
+                        <i class="fas fa-envelope text-2xl text-accent-blue mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold text-gray-100 dark:text-light-text-main">Email Us</h3>
-                            <p class="text-gray-400 dark:text-gray-700">For general inquiries and support.</p>
-                            <a href="mailto:contact@pakadagency.com" class="text-accent-blue dark:text-light-accent-blue hover:underline">contact@pakadagency.com</a>
+                            <h3 class="text-xl font-semibold text-gray-100">Email Us</h3>
+                            <p class="text-gray-400">For general inquiries and support.</p>
+                            <a href="mailto:contact@pakadagency.com" class="text-accent-blue hover:underline">contact@pakadagency.com</a>
                         </div>
                     </div>
-                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
-                        <i class="fas fa-phone text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
+                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 shadow-md">
+                        <i class="fas fa-phone text-2xl text-accent-blue mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold text-gray-100 dark:text-light-text-main">Call Us</h3>
-                            <p class="text-gray-400 dark:text-gray-700">Available Monday to Friday, 9am - 5pm.</p>
-                            <a href="tel:+923001234567" class="text-accent-blue dark:text-light-accent-blue hover:underline">+92 300 1234567</a>
+                            <h3 class="text-xl font-semibold text-gray-100">Call Us</h3>
+                            <p class="text-gray-400">Available Monday to Friday, 9am - 5pm.</p>
+                            <a href="tel:+923001234567" class="text-accent-blue hover:underline">+92 300 1234567</a>
                         </div>
                     </div>
-                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 dark:bg-light-primary shadow-md">
-                        <i class="fas fa-map-marker-alt text-2xl text-accent-blue dark:text-light-accent-blue mr-4 mt-1"></i>
+                    <div class="flex items-start p-4 rounded-lg bg-dark-card/50 shadow-md">
+                        <i class="fas fa-map-marker-alt text-2xl text-accent-blue mr-4 mt-1"></i>
                         <div>
-                            <h3 class="text-xl font-semibold text-gray-100 dark:text-light-text-main">Visit Our Office</h3>
-                            <p class="text-gray-400 dark:text-gray-700">We are located in the heart of Lahore.</p>
-                            <address class="text-accent-blue dark:text-light-accent-blue not-italic">
+                            <h3 class="text-xl font-semibold text-gray-100">Visit Our Office</h3>
+                            <p class="text-gray-400">We are located in the heart of Lahore.</p>
+                            <address class="text-accent-blue not-italic">
                                 123 Commercial Zone,<br>Gulberg III, Lahore, Pakistan
                             </address>
                         </div>
@@ -218,11 +259,37 @@
         </div>
     </main>
 
-    <footer class="py-6 mt-12 navbar-dark dark:navbar-light">
-        <div class="container mx-auto px-4 text-center text-gray-400 dark:text-gray-600">
+    <footer class="py-6 mt-12 navbar-dark">
+        <div class="container mx-auto px-4 text-center text-gray-400">
             <p>&copy; 2024 Pak Ad Agency. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Mobile Bottom Navigation (hidden on desktop) -->
+    <nav class="mobile-bottom-nav">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home nav-icon"></i>
+                <span>Home</span>
+            </a>
+            <a href="Portfolio.html" class="nav-link">
+                <i class="fas fa-briefcase nav-icon"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="about.html" class="nav-link active">
+                <i class="fas fa-info-circle nav-icon"></i>
+                <span>About</span>
+            </a>
+            <a href="pricing_page.html" class="nav-link">
+                <i class="fas fa-dollar-sign nav-icon"></i>
+                <span>Price</span>
+            </a>
+            <a href="Contact.html" class="nav-link">
+                <i class="fas fa-phone nav-icon"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+    </nav>
 </body>
 </html>
 
