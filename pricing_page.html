@@ -43,15 +43,11 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* gray-100 */
-            color: #1f2937; /* gray-800 */
+            background-color: #111827; /* gray-900 */
+            color: #f9fafb; /* gray-50 */
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
             min-height: 100vh;
             overflow-x: hidden;
-        }
-        .dark body {
-            background-color: #111827; /* gray-900 */
-            color: #f9fafb; /* gray-50 */
         }
 
 
@@ -284,16 +280,9 @@
     </style>
 
     <script>
-        // FOUC Prevention Script
-        (function() {
-            const isDark = localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDark) document.documentElement.classList.add('dark');
-        })();
-
         // Configure Tailwind to use the custom colors
         tailwind.config = {
             theme: {
-                darkMode: 'class',
                 extend: {
                     colors: {
                         'primary-green': 'var(--color-primary-green)',
@@ -303,10 +292,14 @@
                     },
                 }
             }
-            // No need for darkMode: 'class' here as it's handled by the main class on <html>
         }
 
+        // Single DOMContentLoaded event listener to avoid conflicts
         document.addEventListener('DOMContentLoaded', () => {
+            // Set dark mode by default
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+            
             // Animation for pricing cards
             lucide.createIcons();
 
@@ -315,29 +308,6 @@
                 // Add staggered fade-in-up animation on load
                 card.style.animationDelay = `${0.3 + index * 0.2}s`;
             });
-
-            // --- Theme Toggle Logic ---
-            const themeToggle = document.getElementById('theme-toggle');
-            const htmlEl = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-
-            function applyTheme(isDark) {
-                htmlEl.classList.toggle('dark', isDark);
-                document.body.classList.toggle('dark', isDark);
-                if(icon) icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-                lucide.createIcons();
-            }
-
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const isCurrentlyDark = htmlEl.classList.contains('dark');
-                    const isNowDark = !isCurrentlyDark;
-                    applyTheme(isNowDark);
-                    localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
-                    
-                });
-            }
-
 
             // Mobile menu toggle logic
             const menuButton = document.getElementById('mobile-menu-button');
@@ -363,26 +333,22 @@
 <body class="min-h-screen">
 
     <!-- Header & Navigation -->
-    <header class="desktop-nav bg-white dark:bg-gray-900 shadow-md sticky top-0 z-20 transition-colors duration-300">
+    <header class="desktop-nav bg-gray-900 shadow-md sticky top-0 z-20 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- Logo: Uses Brand Green in Light Mode, Vibrant Cyan/Blue in Dark Mode -->
-            <h1 class="text-2xl font-bold text-[#006A4E] dark:text-cyan-400 transition-colors duration-300">Pak Ad Agency</h1>
+            <h1 class="text-2xl font-bold text-cyan-400 transition-colors duration-300">Pak Ad Agency</h1>
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="index.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">Home</a>
-                <a href="about.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">About</a>
-                <a href="services.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">Services</a>
-                <a href="pricing_page.html" class="text-sm font-medium text-gray-900 dark:text-gray-100 border-b-2 border-[#FF9900] dark:border-cyan-400 transition-colors duration-300">Pricing</a>
-                <a href="Portfolio.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">Portfolio</a>
-                <a href="Clients.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">Clients</a>
-                <a href="Contact.html" class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#FF9900] dark:hover:text-cyan-400 transition-colors duration-300">Contact</a>
+                <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">Home</a>
+                <a href="about.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">About</a>
+                <a href="services.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">Services</a>
+                <a href="pricing_page.html" class="text-sm font-medium text-white border-b-2 border-[#FF9900] transition-colors duration-300">Pricing</a>
+                <a href="Portfolio.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">Portfolio</a>
+                <a href="Clients.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">Clients</a>
+                <a href="Contact.html" class="text-sm font-medium text-gray-300 hover:text-[#FF9900] transition-colors duration-300">Contact</a>
             </nav>
             <div class="flex items-center space-x-2">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
-                    <i data-lucide="moon" class="w-5 h-5" id="theme-icon"></i>
-                </button>
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 md:hidden">
+                <button id="mobile-menu-button" class="p-2 rounded-full text-gray-300 hover:bg-gray-700 transition-colors duration-300 md:hidden">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -391,28 +357,28 @@
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="hidden">
-        <button id="close-menu-button" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-            <i data-lucide="x" class="w-6 h-6 text-gray-900 dark:text-white"></i>
+        <button id="close-menu-button" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-700 transition">
+            <i data-lucide="x" class="w-6 h-6 text-white"></i>
         </button>
-        <a href="index.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Home</a>
-        <a href="about.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">About</a>
-        <a href="services.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Services</a>
-        <a href="pricing_page.html" class="text-lg font-semibold text-[#FF9900] dark:text-cyan-400 transition duration-200 p-2">Pricing</a>
-        <a href="Portfolio.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Portfolio</a>
-        <a href="Clients.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Clients</a>
-        <a href="Contact.html" class="text-lg font-semibold text-gray-700 dark:text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Contact</a>
+        <a href="index.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Home</a>
+        <a href="about.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">About</a>
+        <a href="services.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Services</a>
+        <a href="pricing_page.html" class="text-lg font-semibold text-[#FF9900] transition duration-200 p-2">Pricing</a>
+        <a href="Portfolio.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Portfolio</a>
+        <a href="Clients.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Clients</a>
+        <a href="Contact.html" class="text-lg font-semibold text-gray-300 hover:text-[#FF9900] transition duration-200 p-2">Contact</a>
     </div>
 
     <div class="container mx-auto px-4 py-16">
 
         <!-- 1. Main Title & Animation -->
         <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-white
                        animate-fade-down opacity-0" 
                 style="animation-fill-mode: forwards;">
                 Choose Your Path to Digital Impact.
             </h1>
-            <p class="mt-4 text-xl text-gray-600 dark:text-gray-400 animate-fade-down opacity-0" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+            <p class="mt-4 text-xl text-gray-300 animate-fade-down opacity-0" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
                 Select the perfect plan to boost your brand's presence in Pakistan and beyond.
             </p>
         </header>
@@ -421,17 +387,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
             <!-- Card 1: Normal AI Ad -->            
-            <div class="pricing-card bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
+            <div class="pricing-card bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Normal AI Ad</h2>
-                    <p class="text-gray-500 dark:text-gray-400 mb-6">Quick & Automated</p>
-                    <div class="text-5xl font-extrabold mb-4">
+                    <h2 class="text-3xl font-bold mb-2 text-white">Normal AI Ad</h2>
+                    <p class="text-gray-400 mb-6">Quick & Automated</p>
+                    <div class="text-5xl font-extrabold mb-4 text-white">
                         <span>2,000</span>
-                        <span class="text-xl font-medium text-gray-500 dark:text-gray-400">PKR</span>
+                        <span class="text-xl font-medium text-gray-300">PKR</span>
                     </div>
                     
                     <!-- Features -->
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300 mt-8">
+                    <ul class="space-y-3 text-gray-200 mt-8">
                         <li class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-3"><polyline points="20 6 9 17 4 12"/></svg>
                             <span>Normal AI Video Ad</span>
@@ -460,17 +426,17 @@
             </div>
 
             <!-- Card 2: Professional AI Ad -->            
-            <div class="pricing-card bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
+            <div class="pricing-card bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Professional AI Ad</h2>
-                    <p class="text-gray-500 dark:text-gray-400 mb-6">Optimized & Enhanced</p>
-                    <div class="text-5xl font-extrabold mb-4">
+                    <h2 class="text-3xl font-bold mb-2 text-white">Professional AI Ad</h2>
+                    <p class="text-gray-400 mb-6">Optimized & Enhanced</p>
+                    <div class="text-5xl font-extrabold mb-4 text-white">
                         <span>2,500</span>
-                        <span class="text-xl font-medium text-gray-500 dark:text-gray-400">PKR</span>
+                        <span class="text-xl font-medium text-gray-300">PKR</span>
                     </div>
                     
                     <!-- Features -->
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300 mt-8">
+                    <ul class="space-y-3 text-gray-200 mt-8">
                         <li class="flex items-center font-semibold text-secondary-blue">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-3"><polyline points="20 6 9 17 4 12"/></svg>
                             <span>Full AI Video Ad</span>
@@ -499,17 +465,17 @@
             </div>
 
             <!-- Card 3: Real Person Ad (Standard) -->            
-            <div class="pricing-card bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
+            <div class="pricing-card bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between transform transition duration-500 hover:scale-[1.02] animate-fade-up">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Real Person Ad (Standard)</h2>
-                    <p class="text-gray-500 dark:text-gray-400 mb-6">Authentic & Engaging</p>
-                    <div class="text-5xl font-extrabold mb-4">
+                    <h2 class="text-3xl font-bold mb-2 text-white">Real Person Ad (Standard)</h2>
+                    <p class="text-gray-400 mb-6">Authentic & Engaging</p>
+                    <div class="text-5xl font-extrabold mb-4 text-white">
                         <span>4,000</span>
-                        <span class="text-xl font-medium text-gray-500 dark:text-gray-400">PKR</span>
+                        <span class="text-xl font-medium text-gray-300">PKR</span>
                     </div>
 
                     <!-- Features -->
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300 mt-8">
+                    <ul class="space-y-3 text-gray-200 mt-8">
                         <li class="flex items-center font-semibold text-secondary-blue">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-3"><polyline points="20 6 9 17 4 12"/></svg>
                             <span>Real Talent (Actor/Model)</span>
@@ -538,19 +504,19 @@
             </div>
 
             <!-- Card 4: Real Person Ad (Ultra/Premium) - Highlighted -->            
-            <div class="pricing-card bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between relative overflow-hidden ring-4 ring-secondary-blue transform transition duration-500 hover:scale-[1.02] animate-fade-up">
+            <div class="pricing-card bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col justify-between relative overflow-hidden ring-4 ring-secondary-blue transform transition duration-500 hover:scale-[1.02] animate-fade-up">
                 <!-- Ribbon Tag -->
                 <div class="ribbon"></div>
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Real Person Ad (Ultra/Premium)</h2>
-                    <p class="text-gray-500 dark:text-gray-400 mb-6 font-semibold">Cinematic Excellence</p>
+                    <h2 class="text-3xl font-bold mb-2 text-white">Real Person Ad (Ultra/Premium)</h2>
+                    <p class="text-gray-400 mb-6 font-semibold">Cinematic Excellence</p>
                     <div class="text-5xl font-extrabold mb-4 text-secondary-blue">
                         <span class="text-secondary-blue">5,000</span>
-                        <span class="text-xl font-medium text-gray-500 dark:text-gray-400">PKR</span>
+                        <span class="text-xl font-medium text-gray-300">PKR</span>
                     </div>
 
                     <!-- Features -->
-                    <ul class="space-y-3 text-gray-700 dark:text-gray-300 mt-8">
+                    <ul class="space-y-3 text-gray-200 mt-8">
                         <li class="flex items-center font-extrabold text-secondary-blue">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-secondary-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-3"><polyline points="20 6 9 17 4 12"/></svg>
                             <span>Highest Quality (Ultra/4K)</span>
@@ -581,9 +547,9 @@
         </div>
 
         <!-- 5. Custom Requirements Section -->        
-        <div class="mt-20 text-center bg-white dark:bg-gray-800 p-10 rounded-xl shadow-xl animate-fade-up opacity-0" style="animation-delay: 1.5s; animation-fill-mode: forwards;">
-            <h3 class="text-3xl font-bold mb-4">Have Custom Requirements?</h3>
-            <p class="text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
+        <div class="mt-20 text-center bg-gray-800 p-10 rounded-xl shadow-xl animate-fade-up opacity-0" style="animation-delay: 1.5s; animation-fill-mode: forwards;">
+            <h3 class="text-3xl font-bold mb-4 text-white">Have Custom Requirements?</h3>
+            <p class="text-lg text-gray-300 mb-6 max-w-2xl mx-auto">
                 If your project requires specialized direction, bulk orders, or unique media types, we are here to create a tailored strategy and quote just for you.
             </p>
             <!-- WhatsApp CTA (Updated with user's number) -->
